@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, ChevronDown, Download } from 'lucide-react';
+import { Upload, ChevronDown, Download, FileText, Link as LinkIcon } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -58,8 +58,8 @@ export default function MainContent({ activeTab, setActiveTab }) {
   }
 
   return (
-    <main className="flex-1 overflow-y-auto bg-white">
-      <div className="p-6">
+    <main className="flex-1 overflow-y-auto bg-white flex items-center justify-center">
+      <div className="w-full max-w-3xl px-6">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-semibold text-gray-900 mb-2">
             Search 👥 People & 🏢 Companies
@@ -70,14 +70,32 @@ export default function MainContent({ activeTab, setActiveTab }) {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">QUICKSTART</h2>
-            <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
-              <Upload className="w-4 h-4" />
-              Upload companies
-            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
+                  Import companies
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 cursor-pointer">
+                  <FileText className="w-4 h-4" />
+                  From CSV
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 cursor-pointer">
+                  <Upload className="w-4 h-4" />
+                  From CRM
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 cursor-pointer">
+                  <LinkIcon className="w-4 h-4" />
+                  From URL
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
 
-        <div className="mb-8">
+        <div>
           <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-4">TEMPLATES</h3>
           <div className="bg-white rounded-lg border border-gray-200">
             {templates.map((template, index) => (
