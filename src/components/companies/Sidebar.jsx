@@ -456,7 +456,6 @@ export default function Sidebar({ activeTab, setActiveTab }) {
             handleGenerateKeywords={handleGenerateKeywords}
             generatedKeywords={generatedKeywords}
           />
-
             </div>
 
         {/* Signals Section */}
