@@ -17,6 +17,7 @@ export default function DeepsearchFilter({
   const triggerRef = useRef(null);
   const [showTooltip, setShowTooltip] = useState(false);
   const [manualInput, setManualInput] = useState('');
+  const [manualCategory, setManualCategory] = useState('Business Type');
   // Each keyword: { word, type: 'include'|'exclude', category?: string }
   const [keywords, setKeywords] = useState([]);
 
