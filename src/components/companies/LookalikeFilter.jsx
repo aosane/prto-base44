@@ -32,19 +32,36 @@ export default function LookalikeFilter({
     setIsGenerating(true);
     if (onGeneratingChange) onGeneratingChange(true);
     
-    // Générer des mots-clés basés sur les lookalikes sélectionnés
-    const keywords = included.map(company => ({
-      word: company,
-      type: 'include',
-      category: 'Lookalike Companies'
-    }));
+    // Générer des mots-clés pertinents basés sur les lookalikes sélectionnés
+    const allKeywords = [];
+    
+    // Ajouter les sociétés lookalike elles-mêmes
+    included.forEach(company => {
+      allKeywords.push({
+        word: company,
+        type: 'include',
+        category: 'Lookalike Companies'
+      });
+    });
 
-    // Simuler la génération
+    // Ajouter des mots-clés génériques pertinents
+    const genericKeywords = [
+      { word: 'SaaS', type: 'include', category: 'Business Type' },
+      { word: 'B2B', type: 'include', category: 'Business Type' },
+      { word: 'Enterprise', type: 'include', category: 'Business Type' },
+      { word: 'Cloud Services', type: 'include', category: 'Activities' },
+      { word: 'Software Platform', type: 'include', category: 'Activities' },
+      { word: 'API Integration', type: 'include', category: 'Activities' },
+    ];
+
+    allKeywords.push(...genericKeywords);
+
+    // Génération sur 10 secondes
     setTimeout(() => {
-      onGenerateDeepsearch(keywords);
+      onGenerateDeepsearch(allKeywords);
       setIsGenerating(false);
       if (onGeneratingChange) onGeneratingChange(false);
-    }, 1500);
+    }, 10000);
   };
 
   return (
