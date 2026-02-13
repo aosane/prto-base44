@@ -392,12 +392,12 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   );
 }
 
-function FilterSection({ label, expandedFilters, toggleFilter, filterState, count: externalCount, children }) {
+function FilterSection({ label, expandedFilters, toggleFilter, filterState, count: externalCount, isHighlighted, children }) {
   const isExpanded = expandedFilters.includes(label);
   const count = externalCount ?? (filterState ? filterState.included.length + filterState.excluded.length : 0);
 
   return (
-    <div>
+    <div className={`transition-all duration-1000 rounded-lg ${isHighlighted ? 'ring-2 ring-purple-400 ring-opacity-60 shadow-lg shadow-purple-200' : ''}`}>
       <button onClick={() => toggleFilter(label)} className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group">
         <div className="flex items-center gap-2">
           <span>{label}</span>
