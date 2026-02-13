@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function Sidebar({ activeTab, setActiveTab }) {
   const [expandedFilters, setExpandedFilters] = useState([]);
@@ -125,7 +124,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
 
   return (
-    <aside className="w-72 bg-white border-r border-gray-200 overflow-y-auto relative z-20">
+    <aside className="w-72 bg-white border-r border-gray-200 overflow-y-auto relative z-10">
       <div className="p-4">
         <h1 className="text-xl font-semibold text-gray-900 mb-4">Companies</h1>
         
@@ -454,26 +453,6 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-purple-500" />
                 <span>Deepsearch</span>
-                <TooltipProvider>
-                  <Tooltip delayDuration={200}>
-                    <TooltipTrigger asChild>
-                      <div className="w-3.5 h-3.5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center cursor-help hover:bg-purple-200 transition-colors">
-                        <span className="text-[10px] font-medium">?</span>
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent side="right" className="max-w-xs z-[100]">
-                      <div className="space-y-2">
-                        <p className="font-semibold text-sm">🔍 Recherche intelligente</p>
-                        <p className="text-xs">Décrivez le type d'entreprise que vous recherchez (ex: "Agence", "SaaS", "Outbound").</p>
-                        <p className="text-xs">L'IA génèrera des mots-clés pertinents en 2 catégories :</p>
-                        <ul className="text-xs list-disc list-inside space-y-1">
-                          <li><span className="font-medium">Type d'entreprise</span> (SaaS, Agence, etc.)</li>
-                          <li><span className="font-medium">Activités</span> (Outbound, Lead gen, etc.)</li>
-                        </ul>
-                      </div>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
               </div>
               {expandedFilters.includes('Deepsearch') ? 
                 <Minus className="w-4 h-4 text-gray-400" /> : 
@@ -618,7 +597,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
                 {/* Tooltip - positioned to the right */}
                 {expandedFilters.includes('Hiring a job') && (
-                  <div className="absolute left-full top-0 ml-4 w-80 z-[100]">
+                  <div className="absolute left-full top-0 ml-4 w-80 z-50">
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 shadow-lg">
                       <div className="flex items-start gap-2">
                         <div className="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5">i</div>
