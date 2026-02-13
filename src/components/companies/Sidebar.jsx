@@ -69,6 +69,25 @@ export default function Sidebar({ activeTab, setActiveTab }) {
     });
   };
 
+  const handleLookalikeGenerateDeepsearch = (keywords) => {
+    // Add keywords to deepsearch
+    setGeneratedKeywords(prev => ({
+      ...prev,
+      ...Object.fromEntries(keywords.map((k, i) => [`category${i + 1}`, [k.word]]))
+    }));
+
+    // Trigger animation on deepsearch
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 2000);
+
+    // Scroll and focus deepsearch
+    setTimeout(() => {
+      if (deepsearchRef) {
+        deepsearchRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 100);
+  };
+
   const toggleFilter = (filterName) => {
     setExpandedFilters(prev => prev.includes(filterName) ? prev.filter(f => f !== filterName) : [...prev, filterName]);
   };
