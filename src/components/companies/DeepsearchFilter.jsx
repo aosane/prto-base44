@@ -213,6 +213,7 @@ export default function DeepsearchFilter({
               onChange={(e) => setManualInput(e.target.value)}
               onKeyDown={handleManualKeyDown}
               placeholder="Taper un mot-clé..."
+              disabled={isGenerating}
               className="text-sm"
             />
             {manualInput.trim() && (
