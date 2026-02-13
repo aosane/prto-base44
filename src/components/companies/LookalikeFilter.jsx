@@ -87,11 +87,12 @@ export default function LookalikeFilter({
         <div className="pt-2 border-t border-gray-200">
           <Button
             onClick={handleGenerateDeepsearch}
-            className="w-full bg-purple-500 hover:bg-purple-600 text-white text-xs gap-2"
+            disabled={isGenerating}
+            className="w-full bg-purple-500 hover:bg-purple-600 text-white text-xs gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             size="sm"
           >
-            <Sparkles className="w-3 h-3" />
-            Generate Deepsearch
+            <Sparkles className={`w-3 h-3 ${isGenerating ? 'animate-spin' : ''}`} />
+            {isGenerating ? 'Génération...' : 'Generate Deepsearch'}
           </Button>
         </div>
       )}
