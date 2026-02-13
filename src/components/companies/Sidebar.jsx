@@ -210,21 +210,36 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <>
             <div className="space-y-1">
               {/* Include/Exclude filters */}
-              {filterConfigs.map((config) => (
-                <FilterSection key={config.label} label={config.label} expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter(config.label)}>
-                  <SearchFilterList
-                    items={config.items}
-                    filterName={config.label}
-                    filterState={getFilter(config.label)}
-                    toggleInclude={toggleInclude}
-                    toggleExclude={toggleExclude}
-                    removeInclude={removeInclude}
-                    removeExclude={removeExclude}
-                    placeholder={config.placeholder}
-                    renderItem={config.render}
-                  />
-                </FilterSection>
-              ))}
+              {filterConfigs.map((config) => {
+                const isIndustry = config.label === 'Industry';
+                const content = (
+                  <FilterSection key={config.label} label={config.label} expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter(config.label)}>
+                    <SearchFilterList
+                      items={config.items}
+                      filterName={config.label}
+                      filterState={getFilter(config.label)}
+                      toggleInclude={toggleInclude}
+                      toggleExclude={toggleExclude}
+                      removeInclude={removeInclude}
+                      removeExclude={removeExclude}
+                      placeholder={config.placeholder}
+                      renderItem={config.render}
+                    />
+                  </FilterSection>
+                );
+                if (isIndustry) {
+                  return (
+                    <div 
+                      key={config.label}
+                      ref={setIndustryRef}
+                      className={`transition-all duration-1000 ${isIndustryAnimating ? 'ring-2 ring-purple-400 ring-opacity-60 rounded-lg p-1 shadow-lg shadow-purple-200' : ''}`}
+                    >
+                      {content}
+                    </div>
+                  );
+                }
+                return content;
+              })}
 
               {/* Company Size */}
               <FilterSection label="Company size" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedCompanySizes.length}>
