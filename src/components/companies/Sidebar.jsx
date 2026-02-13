@@ -461,7 +461,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                         <span className="text-[10px] font-medium">?</span>
                       </div>
                     </TooltipTrigger>
-                    <TooltipContent side="right" className="max-w-xs">
+                    <TooltipContent side="right" className="max-w-xs z-[100]">
                       <div className="space-y-2">
                         <p className="font-semibold text-sm">🔍 Recherche intelligente</p>
                         <p className="text-xs">Décrivez le type d'entreprise que vous recherchez (ex: "Agence", "SaaS", "Outbound").</p>
