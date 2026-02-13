@@ -14,9 +14,11 @@ export default function LookalikeFilter({
   removeInclude,
   removeExclude,
   onGenerateDeepsearch,
+  onGeneratingChange,
   renderItem,
 }) {
   const [search, setSearch] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
   const { included } = filterState;
 
   const filtered = items.filter(item => {
@@ -27,6 +29,9 @@ export default function LookalikeFilter({
   const handleGenerateDeepsearch = () => {
     if (included.length === 0) return;
     
+    setIsGenerating(true);
+    if (onGeneratingChange) onGeneratingChange(true);
+    
     // Générer des mots-clés basés sur les lookalikes sélectionnés
     const keywords = included.map(company => ({
       word: company,
@@ -34,7 +39,12 @@ export default function LookalikeFilter({
       category: 'Lookalike Companies'
     }));
 
-    onGenerateDeepsearch(keywords);
+    // Simuler la génération
+    setTimeout(() => {
+      onGenerateDeepsearch(keywords);
+      setIsGenerating(false);
+      if (onGeneratingChange) onGeneratingChange(false);
+    }, 1500);
   };
 
   return (
