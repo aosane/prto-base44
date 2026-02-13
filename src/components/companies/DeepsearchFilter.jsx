@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Sparkles, Minus, Plus, HelpCircle, X, Check } from 'lucide-react';
+import { Sparkles, Minus, Plus, HelpCircle, X, Check, Ban } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import DeepsearchTooltip from './DeepsearchTooltip';
