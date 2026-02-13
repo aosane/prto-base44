@@ -384,6 +384,23 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           </div>
         )}
       </div>
+      {/* Sticky CTA */}
+      {activeTab === 'search' && (
+        <div className="p-4 border-t border-gray-200 bg-white flex-shrink-0">
+          <Button
+            className="w-full bg-[#1C64F2] hover:bg-[#1854cc] text-white font-medium gap-2"
+            size="default"
+          >
+            <Search className="w-4 h-4" />
+            Lancer la recherche
+            {activeCount > 0 && (
+              <span className="bg-white/20 text-white text-xs px-1.5 py-0.5 rounded-full ml-1">
+                {activeCount}
+              </span>
+            )}
+          </Button>
+        </div>
+      )}
     </aside>
   );
 }
