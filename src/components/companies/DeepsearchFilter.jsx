@@ -214,10 +214,10 @@ function KeywordTag({ keyword, type, onSwitch, onRemove }) {
   const isInclude = type === 'include';
   return (
     <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs ${isInclude ? 'bg-blue-50 text-blue-700' : 'bg-red-50 text-red-700'}`}>
-      {isInclude ? <Check className="w-3 h-3" /> : <X className="w-3 h-3" />}
+      {isInclude ? <Check className="w-3 h-3" /> : <Minus className="w-3 h-3" />}
       <span>{keyword}</span>
-      <button onClick={onSwitch} className={`ml-0.5 rounded-full p-0.5 hover:${isInclude ? 'bg-red-100' : 'bg-blue-100'} transition-colors`} title={isInclude ? 'Exclure' : 'Inclure'}>
-        {isInclude ? <X className="w-2.5 h-2.5 text-red-400" /> : <Check className="w-2.5 h-2.5 text-blue-400" />}
+      <button onClick={onSwitch} className={`ml-0.5 rounded-full p-0.5 ${isInclude ? 'hover:bg-red-100' : 'hover:bg-blue-100'} transition-colors`} title={isInclude ? 'Exclure' : 'Inclure'}>
+        {isInclude ? <Minus className="w-2.5 h-2.5 text-red-400" /> : <Check className="w-2.5 h-2.5 text-blue-400" />}
       </button>
       <button onClick={onRemove} className="ml-0.5 rounded-full p-0.5 hover:bg-gray-200 transition-colors" title="Supprimer">
         <X className="w-2.5 h-2.5 text-gray-400" />
