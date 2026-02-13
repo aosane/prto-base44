@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap } from 'lucide-react';
+import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap, Search, List } from 'lucide-react';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -51,22 +51,24 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveTab('search')}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${
                 activeTab === 'search'
                   ? 'bg-[#2D55EB] text-white'
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
             >
-              Search Companies
+              <Search className="w-4 h-4" />
+              Search
             </button>
             <button
               onClick={() => setActiveTab('lists')}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${
                 activeTab === 'lists'
                   ? 'bg-[#2D55EB] text-white'
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
             >
+              <List className="w-4 h-4" />
               Saved Lists
             </button>
           </div>
