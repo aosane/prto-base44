@@ -77,7 +77,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <div>
             <button
               onClick={() => toggleFilter('Name')}
-              className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+              className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
             >
               <span>Name</span>
               {expandedFilters.includes('Name') ? 
@@ -135,7 +135,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <div>
             <button
               onClick={() => toggleFilter('Industry')}
-              className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+              className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
             >
               <span>Industry</span>
               {expandedFilters.includes('Industry') ? 
@@ -154,7 +154,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <div>
             <button
               onClick={() => toggleFilter('Location')}
-              className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+              className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
             >
               <span>Location</span>
               {expandedFilters.includes('Location') ? 
@@ -173,7 +173,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <div>
             <button
               onClick={() => toggleFilter('Company size')}
-              className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+              className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
             >
               <span>Company size</span>
               {expandedFilters.includes('Company size') ? 
@@ -225,7 +225,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <div>
             <button
               onClick={() => toggleFilter('Department headcount')}
-              className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+              className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
             >
               <span>Department headcount</span>
               {expandedFilters.includes('Department headcount') ? 
@@ -277,7 +277,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <div>
             <button
               onClick={() => toggleFilter('Annual Revenue')}
-              className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+              className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
             >
               <span>Annual Revenue</span>
               {expandedFilters.includes('Annual Revenue') ? 
@@ -345,7 +345,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <div>
                 <button
                   onClick={() => toggleFilter('Headcount growth')}
-                  className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
                 >
                   <span>Headcount growth</span>
                   {expandedFilters.includes('Headcount growth') ? 
@@ -393,7 +393,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <div className="relative">
                 <button
                   onClick={() => toggleFilter('Hiring a job')}
-                  className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
                 >
                   <span>Hiring a job</span>
                   {expandedFilters.includes('Hiring a job') ? 
@@ -515,7 +515,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <div>
                 <button
                   onClick={() => toggleFilter('Tech Stack')}
-                  className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
                 >
                   <span>Tech Stack</span>
                   {expandedFilters.includes('Tech Stack') ? 
@@ -534,7 +534,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <div>
                 <button
                   onClick={() => toggleFilter('Lookalike')}
-                  className="w-full flex items-center justify-between px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
                 >
                   <span>Lookalike</span>
                   {expandedFilters.includes('Lookalike') ? 
