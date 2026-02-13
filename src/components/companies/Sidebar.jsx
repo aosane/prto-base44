@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap, Search, List, Minus, X, Check, Sparkles } from 'lucide-react';
+import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap, Search, List, Minus, X, Check, Sparkles, ArrowRight } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import DeepsearchTooltip from './DeepsearchTooltip';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
   const [expandedFilters, setExpandedFilters] = useState([]);
@@ -445,7 +446,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           </div>
 
           {/* Deepsearch Filter */}
-          <div>
+          <div className="relative">
             <button
               onClick={() => toggleFilter('Deepsearch')}
               className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
@@ -459,6 +460,11 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                 <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
               }
             </button>
+
+            {expandedFilters.includes('Deepsearch') && (
+              <DeepsearchTooltip />
+            )}
+
             {expandedFilters.includes('Deepsearch') && (
               <div className="px-3 py-4 space-y-4 border border-gray-200 rounded-lg mx-3 mb-2">
                 <div className="space-y-3">
