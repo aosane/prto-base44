@@ -41,7 +41,7 @@ export default function MainContent({ activeTab, setActiveTab }) {
   }
 
   return (
-    <main className="flex-1 overflow-y-auto bg-white flex items-center justify-center relative z-0">
+    <main className="flex-1 overflow-y-auto bg-white flex items-center justify-center relative z-0"
       <div className="w-full max-w-3xl px-6">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-semibold text-gray-900 mb-2">

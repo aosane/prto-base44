@@ -125,7 +125,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
 
   return (
-    <aside className="w-72 bg-white border-r border-gray-200 overflow-y-auto relative z-10">
+    <aside className="w-72 bg-white border-r border-gray-200 overflow-y-auto relative z-20">
       <div className="p-4">
         <h1 className="text-xl font-semibold text-gray-900 mb-4">Companies</h1>
         
@@ -618,7 +618,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
                 {/* Tooltip - positioned to the right */}
                 {expandedFilters.includes('Hiring a job') && (
-                  <div className="absolute left-full top-0 ml-4 w-80 z-50">
+                  <div className="absolute left-full top-0 ml-4 w-80 z-[100]">
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 shadow-lg">
                       <div className="flex items-start gap-2">
                         <div className="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5">i</div>
