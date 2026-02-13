@@ -6,7 +6,7 @@ export default function Companies() {
   const [activeTab, setActiveTab] = useState('search');
 
   return (
-    <div className="h-full flex overflow-hidden bg-gray-50">
+    <div className="h-full flex bg-gray-50">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       <MainContent activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
