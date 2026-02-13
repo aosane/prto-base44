@@ -39,21 +39,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
   const departments = ['Accounting', 'Sales', 'Marketing', 'Engineering', 'Product', 'Operations', 'HR', 'All Departments'];
 
-  if (activeTab === 'lists') {
-    return (
-      <aside className="w-72 bg-white border-r border-gray-200 overflow-y-auto">
-        <div className="p-4">
-          <button
-            onClick={() => setActiveTab('search')}
-            className="text-[#2D55EB] text-sm font-medium hover:underline flex items-center gap-1"
-          >
-            <ChevronRight className="w-4 h-4 rotate-180" />
-            Back to Search
-          </button>
-        </div>
-      </aside>
-    );
-  }
+
 
   return (
     <aside className="w-72 bg-white border-r border-gray-200 overflow-y-auto">
@@ -83,8 +69,10 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
         <div className="border-b border-gray-200 mb-4"></div>
 
-        {/* Company Filters */}
-        <div className="space-y-1">
+        {activeTab === 'search' && (
+          <>
+            {/* Company Filters */}
+            <div className="space-y-1">
           {/* Name Filter */}
           <div>
             <button
@@ -564,6 +552,20 @@ export default function Sidebar({ activeTab, setActiveTab }) {
             </div>
           )}
         </div>
+          </>
+        )}
+
+        {activeTab === 'lists' && (
+          <div className="space-y-4">
+            <div className="text-sm text-gray-600">
+              <p className="mb-3">Organize your saved companies into lists for better targeting.</p>
+            </div>
+            
+            <button className="w-full px-4 py-2.5 bg-[#2D55EB] text-white text-sm font-medium rounded-lg hover:bg-[#2442c7] transition-colors">
+              + Create New List
+            </button>
+          </div>
+        )}
       </div>
     </aside>
   );
