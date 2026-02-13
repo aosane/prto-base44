@@ -113,6 +113,13 @@ export default function DeepsearchFilter({
     if (onKeywordsCountChange) onKeywordsCountChange(totalCount);
   }, [totalCount]);
 
+  // Load generated keywords from lookalike
+  useEffect(() => {
+    if (generatedKeywords && Array.isArray(generatedKeywords) && generatedKeywords.length > 0) {
+      setKeywords(generatedKeywords);
+    }
+  }, [generatedKeywords]);
+
   // Group by category for display
   const categories = [...new Set(keywords.map(k => k.category || 'Other'))];
 
