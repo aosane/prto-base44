@@ -9,6 +9,8 @@ export default function useFilterState() {
     'Industry': { included: [], excluded: [] },
     'Seniority': { included: [], excluded: [] },
     'Department': { included: [], excluded: [] },
+    'Tech Stack': { included: [], excluded: [] },
+    'Lookalike': { included: [], excluded: [] },
   });
 
   const toggleInclude = useCallback((filterName, itemId) => {
