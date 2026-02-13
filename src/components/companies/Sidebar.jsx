@@ -1,27 +1,40 @@
 import React, { useState } from 'react';
 import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap, Search, List } from 'lucide-react';
+import IncludeExcludeFilter from './filters/IncludeExcludeFilter';
+import RangeFilter from './filters/RangeFilter';
+import HeadcountGrowthFilter from './filters/HeadcountGrowthFilter';
+import SimpleFilter from './filters/SimpleFilter';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
   const [expandedSection, setExpandedSection] = useState(null);
+  const [activeFilter, setActiveFilter] = useState(null);
 
   const toggleSection = (section) => {
     setExpandedSection(expandedSection === section ? null : section);
   };
 
+  const openFilter = (filterName) => {
+    setActiveFilter(filterName);
+  };
+
+  const closeFilter = () => {
+    setActiveFilter(null);
+  };
+
   const companyFilters = [
-    { label: 'Name' },
-    { label: 'Industry' },
-    { label: 'Location' },
-    { label: 'Company size' },
-    { label: 'Year founded' },
-    { label: 'Revenue' },
+    { label: 'Name', type: 'include-exclude' },
+    { label: 'Industry', type: 'include-exclude' },
+    { label: 'Location', type: 'include-exclude' },
+    { label: 'Company size', type: 'range', min: 0, max: 300000, unit: '+' },
+    { label: 'Department headcount', type: 'range', min: 0, max: 10000, unit: '+' },
+    { label: 'Annual Revenue', type: 'range', min: 0, max: 1000000000, unit: 'M' },
   ];
 
   const signalFilters = [
-    { label: 'New client signed', badge: 'SOON' },
-    { label: 'New partnership', badge: 'SOON' },
-    { label: 'New product or service', badge: 'SOON' },
-    { label: 'Recently raised funds', badge: 'SOON' },
+    { label: 'Headcount growth', type: 'headcount-growth' },
+    { label: 'Hiring a job', type: 'simple' },
+    { label: 'Tech Stack', type: 'simple' },
+    { label: 'Lookalike', type: 'simple', description: 'Find similar companies' },
   ];
 
   if (activeTab === 'lists') {
@@ -79,17 +92,11 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           {companyFilters.map((filter, index) => (
             <button
               key={index}
+              onClick={() => openFilter(filter.label)}
               className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
             >
               <span>{filter.label}</span>
-              <div className="flex items-center gap-2">
-                {filter.badge && (
-                  <span className="text-xs font-medium text-[#2D55EB] bg-[#2D55EB]/10 px-2 py-0.5 rounded">
-                    {filter.badge}
-                  </span>
-                )}
-                <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
-              </div>
+              <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
             </button>
           ))}
         </div>
@@ -112,22 +119,69 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               {signalFilters.map((filter, index) => (
                 <button
                   key={index}
+                  onClick={() => openFilter(filter.label)}
                   className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
                 >
                   <span>{filter.label}</span>
-                  <div className="flex items-center gap-2">
-                    {filter.badge && (
-                      <span className="text-xs font-medium text-[#2D55EB] bg-[#2D55EB]/10 px-2 py-0.5 rounded">
-                        {filter.badge}
-                      </span>
-                    )}
-                    <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
-                  </div>
+                  <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
                 </button>
               ))}
             </div>
           )}
         </div>
+
+        {/* Filter Modals */}
+        {companyFilters.map((filter) => {
+          if (filter.type === 'include-exclude') {
+            return (
+              <IncludeExcludeFilter
+                key={filter.label}
+                isOpen={activeFilter === filter.label}
+                onClose={closeFilter}
+                title={filter.label}
+                placeholder={`Search ${filter.label.toLowerCase()}...`}
+              />
+            );
+          }
+          if (filter.type === 'range') {
+            return (
+              <RangeFilter
+                key={filter.label}
+                isOpen={activeFilter === filter.label}
+                onClose={closeFilter}
+                title={filter.label}
+                min={filter.min}
+                max={filter.max}
+                unit={filter.unit}
+              />
+            );
+          }
+          return null;
+        })}
+
+        {signalFilters.map((filter) => {
+          if (filter.type === 'headcount-growth') {
+            return (
+              <HeadcountGrowthFilter
+                key={filter.label}
+                isOpen={activeFilter === filter.label}
+                onClose={closeFilter}
+              />
+            );
+          }
+          if (filter.type === 'simple') {
+            return (
+              <SimpleFilter
+                key={filter.label}
+                isOpen={activeFilter === filter.label}
+                onClose={closeFilter}
+                title={filter.label}
+                description={filter.description}
+              />
+            );
+          }
+          return null;
+        })}
       </div>
     </aside>
   );
