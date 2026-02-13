@@ -327,9 +327,9 @@ export default function Sidebar({ activeTab, setActiveTab }) {
             </div>
 
             {/* Deepsearch - after signals */}
-            <div 
+             <div 
               ref={setDeepsearchRef}
-              className={`mt-6 transition-all duration-500 ${isAnimating ? 'ring-2 ring-purple-400 rounded-lg p-2' : ''}`}
+              className={`mt-6 transition-all duration-1000 ${isAnimating ? 'ring-2 ring-purple-400 ring-opacity-60 rounded-lg p-2 shadow-lg shadow-purple-200' : ''}`}
             >
               <DeepsearchFilter
                 expandedFilters={expandedFilters}
@@ -340,6 +340,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                 handleGenerateKeywords={handleGenerateKeywords}
                 generatedKeywords={generatedKeywords}
                 onKeywordsCountChange={setDeepsearchCount}
+                isGenerating={isLookalikeGenerating}
               />
             </div>
           </>
