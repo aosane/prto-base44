@@ -79,13 +79,10 @@ export default function DeepsearchFilter({
   const addManualKeyword = (type) => {
     const word = manualInput.trim();
     if (!word) return;
-    if (type === 'include' && !included.includes(word)) {
-      setExcluded(prev => prev.filter(k => k !== word));
-      setIncluded(prev => [...prev, word]);
-    } else if (type === 'exclude' && !excluded.includes(word)) {
-      setIncluded(prev => prev.filter(k => k !== word));
-      setExcluded(prev => [...prev, word]);
-    }
+    setKeywords(prev => {
+      const without = prev.filter(k => k.word !== word);
+      return [...without, { word, type, category: 'Manual' }];
+    });
     setManualInput('');
   };
 
@@ -96,22 +93,20 @@ export default function DeepsearchFilter({
     }
   };
 
-  const moveToInclude = (keyword) => {
-    setExcluded(prev => prev.filter(k => k !== keyword));
-    if (!included.includes(keyword)) setIncluded(prev => [...prev, keyword]);
+  const toggleKeywordType = (word) => {
+    setKeywords(prev => prev.map(k => k.word === word ? { ...k, type: k.type === 'include' ? 'exclude' : 'include' } : k));
   };
 
-  const moveToExclude = (keyword) => {
-    setIncluded(prev => prev.filter(k => k !== keyword));
-    if (!excluded.includes(keyword)) setExcluded(prev => [...prev, keyword]);
+  const removeKeyword = (word) => {
+    setKeywords(prev => prev.filter(k => k.word !== word));
   };
 
-  const removeKeyword = (keyword) => {
-    setIncluded(prev => prev.filter(k => k !== keyword));
-    setExcluded(prev => prev.filter(k => k !== keyword));
-  };
+  const included = keywords.filter(k => k.type === 'include');
+  const excluded = keywords.filter(k => k.type === 'exclude');
+  const totalCount = keywords.length;
 
-  const totalCount = included.length + excluded.length;
+  // Group by category for display
+  const categories = [...new Set(keywords.map(k => k.category || 'Other'))];
 
   return (
     <div ref={triggerRef}>
