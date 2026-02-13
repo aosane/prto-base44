@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronUp, ChevronDown, Plus, Zap, Search, List, Minus, RotateCcw } from 'lucide-react';
 import { Input } from "@/components/ui/input";
-import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import DeepsearchFilter from './DeepsearchFilter';
 import HiringFilter from './HiringFilter';
 import SearchFilterList from '../search/SearchFilterList';
+import CompanySizeFilter from '../search/CompanySizeFilter';
 import useFilterState from '../search/useFilterState';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
@@ -14,7 +14,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   const [expandedSection, setExpandedSection] = useState(null);
 
   // Range filter states
-  const [companySizeRange, setCompanySizeRange] = useState([0, 300000]);
+  const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
   const [deptHeadcountRange, setDeptHeadcountRange] = useState([0, 10000]);
   const [revenueRange, setRevenueRange] = useState([0, 1000]);
   const [headcountDept, setHeadcountDept] = useState('Accounting');
@@ -126,7 +126,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                 <button
                   onClick={() => {
                     resetAll();
-                    setCompanySizeRange([0, 300000]);
+                    setSelectedCompanySizes([]);
                     setDeptHeadcountRange([0, 10000]);
                     setRevenueRange([0, 1000]);
                     setDeepsearchInput('');
@@ -187,23 +187,8 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               ))}
 
               {/* Company Size */}
-              <FilterSection label="Company size" expandedFilters={expandedFilters} toggleFilter={toggleFilter}>
-                <div className="px-3 py-4 space-y-4 border border-gray-200 rounded-lg mx-3 mb-2">
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <label className="text-xs text-gray-600 mb-1 block">Min</label>
-                      <Input type="number" value={companySizeRange[0]} onChange={(e) => setCompanySizeRange([parseInt(e.target.value) || 0, companySizeRange[1]])} className="text-sm" />
-                    </div>
-                    <div>
-                      <label className="text-xs text-gray-600 mb-1 block">Max</label>
-                      <Input type="number" value={companySizeRange[1]} onChange={(e) => setCompanySizeRange([companySizeRange[0], parseInt(e.target.value) || 300000])} className="text-sm" />
-                    </div>
-                  </div>
-                  <div className="px-1">
-                    <Slider min={0} max={300000} step={100} value={companySizeRange} onValueChange={setCompanySizeRange} />
-                    <div className="flex justify-between mt-1 text-xs text-gray-500"><span>0</span><span>300k+</span></div>
-                  </div>
-                </div>
+              <FilterSection label="Company size" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedCompanySizes.length}>
+                <CompanySizeFilter selected={selectedCompanySizes} setSelected={setSelectedCompanySizes} />
               </FilterSection>
 
               {/* Department Headcount */}
@@ -346,9 +331,9 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   );
 }
 
-function FilterSection({ label, expandedFilters, toggleFilter, filterState, children }) {
+function FilterSection({ label, expandedFilters, toggleFilter, filterState, count: externalCount, children }) {
   const isExpanded = expandedFilters.includes(label);
-  const count = filterState ? filterState.included.length + filterState.excluded.length : 0;
+  const count = externalCount ?? (filterState ? filterState.included.length + filterState.excluded.length : 0);
 
   return (
     <div>
