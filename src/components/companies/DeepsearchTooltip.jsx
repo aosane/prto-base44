@@ -24,25 +24,7 @@ export default function DeepsearchTooltip() {
   const [activeStep, setActiveStep] = useState(0);
   const [demoText, setDemoText] = useState('');
   const [showKeywords, setShowKeywords] = useState(false);
-  const [positionAbove, setPositionAbove] = useState(false);
-  const tooltipRef = React.useRef(null);
-  const parentRef = React.useRef(null);
 
-  useEffect(() => {
-    const checkPosition = () => {
-      if (tooltipRef.current) {
-        const rect = tooltipRef.current.getBoundingClientRect();
-        if (rect.bottom > window.innerHeight - 20) {
-          setPositionAbove(true);
-        } else {
-          setPositionAbove(false);
-        }
-      }
-    };
-    checkPosition();
-    window.addEventListener('resize', checkPosition);
-    return () => window.removeEventListener('resize', checkPosition);
-  }, []);
 
   const demoInput = 'Agence outbound';
   const category1 = ['SaaS', 'Agency', 'Platform'];
@@ -82,10 +64,7 @@ export default function DeepsearchTooltip() {
   }, [activeStep]);
 
   return (
-    <div 
-      ref={tooltipRef}
-      className={`absolute left-full ml-4 w-80 z-50 ${positionAbove ? 'bottom-0' : 'top-0'}`}
-    >
+    <div className="w-80">
       <div className="bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200 rounded-xl p-5 shadow-xl">
         {/* Header */}
         <div className="flex items-center gap-2 mb-4">
