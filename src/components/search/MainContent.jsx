@@ -59,56 +59,6 @@ export default function MainContent({ activeTab, setActiveTab }) {
 
   return (
     <main className="flex-1 overflow-y-auto bg-white">
-      {/* Navbar with CTAs */}
-      <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-3">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900">Search Results</h2>
-          <div className="flex items-center gap-3">
-            <button className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
-              Save list
-            </button>
-            
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
-                  Find People
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuItem>Founder</DropdownMenuItem>
-                <DropdownMenuItem>CEO</DropdownMenuItem>
-                <DropdownMenuItem>Sales</DropdownMenuItem>
-                <DropdownMenuItem>Marketing</DropdownMenuItem>
-                <DropdownMenuItem>Engineering</DropdownMenuItem>
-                <DropdownMenuItem>Product</DropdownMenuItem>
-                <DropdownMenuItem>Operations</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
-                  Push to CRM
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuItem>Salesforce</DropdownMenuItem>
-                <DropdownMenuItem>HubSpot</DropdownMenuItem>
-                <DropdownMenuItem>Pipedrive</DropdownMenuItem>
-                <DropdownMenuItem>Zoho CRM</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[#2D55EB] rounded-lg hover:bg-[#2442c7]">
-              <Download className="w-4 h-4" />
-              Download as CSV
-            </button>
-          </div>
-        </div>
-      </div>
-
       <div className="p-6">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-semibold text-gray-900 mb-2">
