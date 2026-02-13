@@ -29,7 +29,7 @@ export default function useFilterState() {
 
   const toggleExclude = useCallback((filterName, itemId) => {
     setFilters(prev => {
-      const f = prev[filterName];
+      const f = prev[filterName] || { included: [], excluded: [] };
       const isExcluded = f.excluded.includes(itemId);
       return {
         ...prev,
