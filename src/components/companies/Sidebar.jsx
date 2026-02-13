@@ -28,6 +28,9 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   const [isTyping, setIsTyping] = useState(true);
   const [generatedKeywords, setGeneratedKeywords] = useState(null);
 
+  // Deepsearch keywords count
+  const [deepsearchCount, setDeepsearchCount] = useState(0);
+
   // Include/Exclude filter state
   const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll } = useFilterState();
 
@@ -110,7 +113,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
     { label: 'Location', items: mockLocations, placeholder: 'Search locations...', render: renderWithSub },
   ];
 
-  const activeCount = getActiveCount();
+  const activeCount = getActiveCount() + deepsearchCount;
 
   return (
     <aside className="w-72 bg-white border-r border-gray-200 relative z-10 flex-shrink-0 h-full flex flex-col">
@@ -252,6 +255,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                 placeholder={placeholder}
                 handleGenerateKeywords={handleGenerateKeywords}
                 generatedKeywords={generatedKeywords}
+                onKeywordsCountChange={setDeepsearchCount}
               />
             </div>
 

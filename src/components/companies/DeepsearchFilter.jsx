@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Sparkles, Minus, Plus, HelpCircle, X, Check, Ban } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ export default function DeepsearchFilter({
   placeholder,
   handleGenerateKeywords: onGenerate,
   generatedKeywords,
+  onKeywordsCountChange,
 }) {
   const triggerRef = useRef(null);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -106,6 +107,10 @@ export default function DeepsearchFilter({
   const included = keywords.filter(k => k.type === 'include');
   const excluded = keywords.filter(k => k.type === 'exclude');
   const totalCount = keywords.length;
+
+  useEffect(() => {
+    if (onKeywordsCountChange) onKeywordsCountChange(totalCount);
+  }, [totalCount]);
 
   // Group by category for display
   const categories = [...new Set(keywords.map(k => k.category || 'Other'))];
