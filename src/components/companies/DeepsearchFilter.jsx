@@ -187,6 +187,15 @@ export default function DeepsearchFilter({
           {/* Manual add */}
           <div className="pt-2 border-t border-gray-200 space-y-2">
             <div className="text-xs font-medium text-gray-500">Ajouter manuellement</div>
+            <Select value={manualCategory} onValueChange={setManualCategory}>
+              <SelectTrigger className="text-xs h-8">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Business Type">Business Type</SelectItem>
+                <SelectItem value="Activities">Activities</SelectItem>
+              </SelectContent>
+            </Select>
             <Input
               type="text"
               value={manualInput}
@@ -201,7 +210,7 @@ export default function DeepsearchFilter({
                   <Check className="w-3 h-3 mr-1" /> Inclure
                 </Button>
                 <Button variant="outline" size="sm" className="flex-1 text-xs text-red-700 border-red-200 hover:bg-red-50" onClick={() => addManualKeyword('exclude')}>
-                  <X className="w-3 h-3 mr-1" /> Exclure
+                  <Ban className="w-3 h-3 mr-1" /> Exclure
                 </Button>
               </div>
             )}
