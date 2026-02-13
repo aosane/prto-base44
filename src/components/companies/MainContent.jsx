@@ -31,7 +31,7 @@ export default function MainContent({ activeTab, setActiveTab }) {
             </div>
             <p className="text-gray-900 font-medium mb-2">No lists yet</p>
             <p className="text-gray-500 text-sm mb-6">Create your first list to start organizing your companies</p>
-            <button className="px-6 py-2.5 bg-[#2D55EB] text-white text-sm font-medium rounded-lg hover:bg-[#2442c7] transition-colors">
+            <button className="px-6 py-2.5 bg-[#1C64F2] text-white text-sm font-medium rounded-lg hover:bg-[#1854cc] transition-colors">
               Create New List
             </button>
           </div>

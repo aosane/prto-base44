@@ -33,7 +33,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <div className="flex items-center justify-between mb-4">
             <button
               onClick={() => setActiveTab('search')}
-              className="text-[#2D55EB] text-sm font-medium hover:underline flex items-center gap-1"
+              className="text-[#1C64F2] text-sm font-medium hover:underline flex items-center gap-1"
             >
               <ChevronRight className="w-4 h-4 rotate-180" />
               Back to Search
@@ -53,7 +53,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               onClick={() => setActiveTab('search')}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${
                 activeTab === 'search'
-                  ? 'bg-[#2D55EB] text-white'
+                  ? 'bg-[#1C64F2] text-white'
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
             >
@@ -64,7 +64,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               onClick={() => setActiveTab('lists')}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${
                 activeTab === 'lists'
-                  ? 'bg-[#2D55EB] text-white'
+                  ? 'bg-[#1C64F2] text-white'
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
             >
@@ -86,7 +86,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <span>{filter.label}</span>
               <div className="flex items-center gap-2">
                 {filter.badge && (
-                  <span className="text-xs font-medium text-[#2D55EB] bg-[#2D55EB]/10 px-2 py-0.5 rounded">
+                  <span className="text-xs font-medium text-[#1C64F2] bg-[#1C64F2]/10 px-2 py-0.5 rounded">
                     {filter.badge}
                   </span>
                 )}
@@ -119,7 +119,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                   <span>{filter.label}</span>
                   <div className="flex items-center gap-2">
                     {filter.badge && (
-                      <span className="text-xs font-medium text-[#2D55EB] bg-[#2D55EB]/10 px-2 py-0.5 rounded">
+                      <span className="text-xs font-medium text-[#1C64F2] bg-[#1C64F2]/10 px-2 py-0.5 rounded">
                         {filter.badge}
                       </span>
                     )}
@@ -141,7 +141,7 @@ function FilterItem({ label, badge }) {
       <span>{label}</span>
       <div className="flex items-center gap-2">
         {badge && (
-          <span className="text-xs font-medium text-[#2D55EB]">{badge}</span>
+          <span className="text-xs font-medium text-[#1C64F2]">{badge}</span>
         )}
         <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
       </div>

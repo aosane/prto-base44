@@ -23,14 +23,14 @@ export default function MainContent({ activeTab, setActiveTab }) {
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-2xl font-semibold text-gray-900">My Lists</h1>
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#2D55EB] bg-[#2D55EB]/10 rounded-lg hover:bg-[#2D55EB]/20 transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#1C64F2] bg-[#1C64F2]/10 rounded-lg hover:bg-[#1C64F2]/20 transition-colors">
                 <Download className="w-4 h-4" />
                 Download as CSV
               </button>
               
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[#2D55EB] rounded-lg hover:bg-[#2442c7] transition-colors">
+                  <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[#1C64F2] rounded-lg hover:bg-[#1854cc] transition-colors">
                     Find People
                     <ChevronDown className="w-4 h-4" />
                   </button>

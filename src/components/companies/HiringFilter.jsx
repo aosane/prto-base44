@@ -118,7 +118,7 @@ export default function HiringFilter({ expandedFilters, toggleFilter }) {
           </div>
           <div className="flex justify-end gap-2 pt-2">
             <Button variant="outline" size="sm">Reset</Button>
-            <Button size="sm" className="bg-[#2D55EB] hover:bg-[#2442c7]">Apply</Button>
+            <Button size="sm" className="bg-[#1C64F2] hover:bg-[#1854cc]">Apply</Button>
           </div>
         </div>
       )}
