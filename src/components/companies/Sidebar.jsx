@@ -462,6 +462,9 @@ export default function Sidebar({ activeTab, setActiveTab }) {
             {expandedFilters.includes('Deepsearch') && (
               <div className="px-3 py-4 space-y-4 border border-gray-200 rounded-lg mx-3 mb-2">
                 <div className="space-y-3">
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Describe your target companies in simple terms. Our AI will generate relevant keywords to refine your search.
+                  </p>
                   <div className="relative">
                     <Input
                       type="text"
