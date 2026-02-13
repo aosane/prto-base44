@@ -79,7 +79,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
     // Trigger animation on deepsearch
     setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 2000);
+    setTimeout(() => setIsAnimating(false), 3000);
 
     // Scroll and focus deepsearch
     setTimeout(() => {
