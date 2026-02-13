@@ -67,6 +67,21 @@ export default function useFilterState() {
     return Object.values(filters).reduce((count, f) => count + f.included.length + f.excluded.length, 0);
   }, [filters]);
 
+  const bulkInclude = useCallback((filterName, items) => {
+    setFilters(prev => {
+      const f = prev[filterName] || { included: [], excluded: [] };
+      const existingSet = new Set(f.included);
+      const newItems = items.filter(i => !existingSet.has(i));
+      return {
+        ...prev,
+        [filterName]: {
+          ...f,
+          included: [...f.included, ...newItems],
+        }
+      };
+    });
+  }, []);
+
   const resetAll = useCallback(() => {
     setFilters(prev => {
       const reset = {};
@@ -77,5 +92,5 @@ export default function useFilterState() {
     });
   }, []);
 
-  return { filters, toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll };
+  return { filters, toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll, bulkInclude };
 }
