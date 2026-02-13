@@ -5,6 +5,7 @@ import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import DeepsearchTooltip from './DeepsearchTooltip';
+import TooltipPortal from './TooltipPortal';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
   const [expandedFilters, setExpandedFilters] = useState([]);
@@ -446,24 +447,15 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           </div>
 
           {/* Deepsearch Filter */}
-          <div className="relative">
-            <button
-              onClick={() => toggleFilter('Deepsearch')}
-              className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
-            >
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-purple-500" />
-                <span>Deepsearch</span>
-              </div>
-              {expandedFilters.includes('Deepsearch') ? 
-                <Minus className="w-4 h-4 text-gray-400" /> : 
-                <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
-              }
-            </button>
-
-            {expandedFilters.includes('Deepsearch') && (
-              <DeepsearchTooltip />
-            )}
+          <DeepsearchFilter
+            expandedFilters={expandedFilters}
+            toggleFilter={toggleFilter}
+            deepsearchInput={deepsearchInput}
+            setDeepsearchInput={setDeepsearchInput}
+            placeholder={placeholder}
+            handleGenerateKeywords={handleGenerateKeywords}
+            generatedKeywords={generatedKeywords}
+          />
 
             {expandedFilters.includes('Deepsearch') && (
               <div className="px-3 py-4 space-y-4 border border-gray-200 rounded-lg mx-3 mb-2">
