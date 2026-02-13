@@ -1,15 +1,35 @@
 import React, { useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap } from 'lucide-react';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
-  const filters = [
-    { label: 'Name', category: 'people' },
-    { label: 'Job title', category: 'people' },
-    { label: 'Company', category: 'both' },
-    { label: 'Location', category: 'both' },
-    { label: 'Industry', category: 'company' },
-    { label: 'Seniority', category: 'people' },
-    { label: 'Department', category: 'people' },
+  const [expandedSection, setExpandedSection] = useState(null);
+
+  const toggleSection = (section) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
+
+  const companyFilters = [
+    { label: 'Name' },
+    { label: 'Job title' },
+    { label: 'Company' },
+    { label: 'Location' },
+    { label: 'Industry' },
+    { label: 'Seniority' },
+    { label: 'Department' },
+    { label: 'Year founded' },
+    { label: 'Funding', badge: 'SOON' },
+    { label: 'Technology', badge: 'SOON' },
+    { label: 'Hiring', badge: 'SOON' },
+    { label: 'CRM', badge: 'SOON' },
+    { label: 'Annual revenue', badge: 'SOON' },
+    { label: 'Number of followers', badge: 'SOON' },
+  ];
+
+  const signalFilters = [
+    { label: 'New client signed', badge: 'SOON' },
+    { label: 'New partnership', badge: 'SOON' },
+    { label: 'New product or service', badge: 'SOON' },
+    { label: 'Recently raised funds', badge: 'SOON' },
   ];
 
   if (activeTab === 'lists') {
@@ -72,16 +92,59 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <span>Saved searches</span>
         </button>
 
-        <div className="space-y-1">
-          {filters.map((filter, index) => (
+        {/* Company Filters */}
+        <div className="space-y-1 mb-6">
+          {companyFilters.map((filter, index) => (
             <button
               key={index}
-              className="w-full flex items-center justify-between px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+              className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
             >
               <span>{filter.label}</span>
-              <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
+              <div className="flex items-center gap-2">
+                {filter.badge && (
+                  <span className="text-xs font-medium text-[#2D55EB] bg-[#2D55EB]/10 px-2 py-0.5 rounded">
+                    {filter.badge}
+                  </span>
+                )}
+                <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
+              </div>
             </button>
           ))}
+        </div>
+
+        {/* Signals Section */}
+        <div className="mb-4">
+          <button
+            onClick={() => toggleSection('signals')}
+            className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-gray-400 uppercase mb-2 hover:text-gray-600"
+          >
+            <div className="flex items-center gap-2">
+              <Zap className="w-4 h-4" />
+              <span>SIGNALS</span>
+            </div>
+            {expandedSection === 'signals' ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          </button>
+          
+          {expandedSection === 'signals' && (
+            <div className="space-y-1">
+              {signalFilters.map((filter, index) => (
+                <button
+                  key={index}
+                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+                >
+                  <span>{filter.label}</span>
+                  <div className="flex items-center gap-2">
+                    {filter.badge && (
+                      <span className="text-xs font-medium text-[#2D55EB] bg-[#2D55EB]/10 px-2 py-0.5 rounded">
+                        {filter.badge}
+                      </span>
+                    )}
+                    <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </aside>
