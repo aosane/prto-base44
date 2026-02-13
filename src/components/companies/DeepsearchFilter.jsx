@@ -170,11 +170,12 @@ export default function DeepsearchFilter({
             </div>
             <Button 
               onClick={handleGenerate}
-              className="w-full bg-[#1C64F2] hover:bg-[#1854cc] text-white"
+              disabled={isGenerating}
+              className="w-full bg-[#1C64F2] hover:bg-[#1854cc] text-white disabled:opacity-50 disabled:cursor-not-allowed"
               size="sm"
             >
-              <Sparkles className="w-4 h-4 mr-2" />
-              Générer les mots-clés
+              <Sparkles className={`w-4 h-4 mr-2 ${isGenerating ? 'animate-spin' : ''}`} />
+              {isGenerating ? 'Génération en cours...' : 'Générer les mots-clés'}
             </Button>
           </div>
 
