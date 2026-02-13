@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, ChevronDown, Download, FileText, Link as LinkIcon, Search } from 'lucide-react';
-import { Input } from "@/components/ui/input";
+import { Upload, ChevronDown, Download, FileText, Link as LinkIcon } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,8 +8,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function MainContent({ activeTab, setActiveTab }) {
-  const [listTab, setListTab] = useState('my-lists');
-
   const templates = [
     { name: 'SaaS Companies (Series A-B)', filters: 5 },
     { name: 'Fintech Startups', filters: 4 },
@@ -22,53 +19,36 @@ export default function MainContent({ activeTab, setActiveTab }) {
   if (activeTab === 'lists') {
     return (
       <main className="flex-1 overflow-y-auto bg-white">
-        <div className="flex h-full">
-          {/* Left sidebar for lists */}
-          <div className="w-60 border-r border-gray-200 bg-gray-50">
-            <div className="p-4">
-              <div className="flex gap-4 mb-4">
-                <button
-                  onClick={() => setListTab('my-lists')}
-                  className={`text-sm font-medium pb-2 ${
-                    listTab === 'my-lists'
-                      ? 'text-gray-900 border-b-2 border-gray-900'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  My lists
-                </button>
-                <button
-                  onClick={() => setListTab('workspace')}
-                  className={`text-sm font-medium pb-2 ${
-                    listTab === 'workspace'
-                      ? 'text-gray-900 border-b-2 border-gray-900'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  Workspace lists
-                </button>
-              </div>
-
-              <div className="relative mb-4">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <Input
-                  placeholder="Search by name or owner"
-                  className="pl-9 bg-white text-sm"
-                />
-              </div>
-
-              <div className="text-center py-8">
-                <p className="text-sm text-gray-400">No personal lists found</p>
-              </div>
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-2xl font-semibold text-gray-900">My Lists</h1>
+            <div className="flex items-center gap-3">
+              <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#2D55EB] bg-[#2D55EB]/10 rounded-lg hover:bg-[#2D55EB]/20 transition-colors">
+                <Download className="w-4 h-4" />
+                Download as CSV
+              </button>
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[#2D55EB] rounded-lg hover:bg-[#2442c7] transition-colors">
+                    Find Companies
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem>SaaS</DropdownMenuItem>
+                  <DropdownMenuItem>E-commerce</DropdownMenuItem>
+                  <DropdownMenuItem>Fintech</DropdownMenuItem>
+                  <DropdownMenuItem>Healthcare</DropdownMenuItem>
+                  <DropdownMenuItem>Enterprise</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
 
-          {/* Main content area */}
-          <div className="flex-1 flex items-center justify-center">
-            <div className="text-center">
-              <p className="text-gray-500 font-medium mb-1">No lists available</p>
-              <p className="text-gray-400 text-sm">Create your first list to get started organizing your data</p>
-            </div>
+          <div className="bg-gray-50 rounded-lg border border-gray-200 p-12 text-center">
+            <p className="text-gray-900 font-medium mb-2">No lists available</p>
+            <p className="text-gray-500 text-sm">Create your first list to get started organizing your data</p>
           </div>
         </div>
       </main>
