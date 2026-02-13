@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Sparkles, Minus, Plus } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { Sparkles, Minus, Plus, HelpCircle, X } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import DeepsearchTooltip from './DeepsearchTooltip';
@@ -15,6 +15,7 @@ export default function DeepsearchFilter({
   generatedKeywords,
 }) {
   const triggerRef = useRef(null);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   return (
     <div ref={triggerRef}>
