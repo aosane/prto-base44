@@ -5,7 +5,7 @@ import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import DeepsearchFilter from './DeepsearchFilter';
-import TooltipPortal from './TooltipPortal';
+import HiringFilter from './HiringFilter';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
   const [expandedFilters, setExpandedFilters] = useState([]);
