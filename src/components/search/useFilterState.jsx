@@ -65,5 +65,15 @@ export default function useFilterState() {
     return Object.values(filters).reduce((count, f) => count + f.included.length + f.excluded.length, 0);
   }, [filters]);
 
-  return { filters, toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount };
+  const resetAll = useCallback(() => {
+    setFilters(prev => {
+      const reset = {};
+      Object.keys(prev).forEach(key => {
+        reset[key] = { included: [], excluded: [] };
+      });
+      return reset;
+    });
+  }, []);
+
+  return { filters, toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll };
 }
