@@ -57,7 +57,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
             >
-              Search
+              Search Companies
             </button>
             <button
               onClick={() => setActiveTab('lists')}
@@ -67,24 +67,12 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
             >
-              Lists
+              Saved Lists
             </button>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-          </svg>
-          <span className="font-medium">0 FILTERS</span>
-        </div>
-        
-        <button className="flex items-center gap-2 text-sm text-[#2D55EB] hover:underline mb-6">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-          </svg>
-          <span>Saved searches</span>
-        </button>
+        <div className="border-b border-gray-200 mb-4"></div>
 
         {/* Company Filters */}
         <div className="space-y-1 mb-6">
