@@ -8,13 +8,27 @@ export default function TooltipPortal({ children, triggerRef }) {
     const update = () => {
       if (triggerRef?.current) {
         const rect = triggerRef.current.getBoundingClientRect();
-        const tooltipHeight = 400; // estimated max height
+        const tooltipHeight = 450;
         const spaceBelow = window.innerHeight - rect.top;
-        const placeAbove = spaceBelow < tooltipHeight && rect.top > tooltipHeight;
+        const spaceAbove = rect.top;
+
+        let top;
+        let bottom;
+
+        if (spaceBelow >= tooltipHeight) {
+          // Enough space below
+          top = rect.top;
+        } else if (spaceAbove >= tooltipHeight) {
+          // Place above
+          bottom = window.innerHeight - rect.bottom;
+        } else {
+          // Not enough space either way — clamp to viewport
+          top = Math.max(8, window.innerHeight - tooltipHeight - 8);
+        }
 
         setPos({
-          top: placeAbove ? undefined : rect.top,
-          bottom: placeAbove ? window.innerHeight - rect.bottom : undefined,
+          top,
+          bottom,
           left: rect.right + 16,
         });
       }
