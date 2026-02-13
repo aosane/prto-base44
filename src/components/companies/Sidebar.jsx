@@ -71,18 +71,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   };
 
   const handleLookalikeGenerateDeepsearch = (keywords) => {
-    // Add keywords to deepsearch - group by category
-    const grouped = {};
-    keywords.forEach(k => {
-      const cat = k.category || 'Other';
-      if (!grouped[cat]) grouped[cat] = [];
-      grouped[cat].push(k.word);
-    });
-
-    setGeneratedKeywords(prev => ({
-      ...prev,
-      ...grouped
-    }));
+    setGeneratedKeywords(keywords);
 
     // Trigger animation on deepsearch for 10 seconds
     setIsAnimating(true);
