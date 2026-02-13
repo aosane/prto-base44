@@ -33,7 +33,9 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   // Deepsearch keywords count
   const [deepsearchCount, setDeepsearchCount] = useState(0);
   const [deepsearchRef, setDeepsearchRef] = useState(null);
+  const [industryRef, setIndustryRef] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isIndustryAnimating, setIsIndustryAnimating] = useState(false);
   const [isLookalikeGenerating, setIsLookalikeGenerating] = useState(false);
 
   // Include/Exclude filter state
