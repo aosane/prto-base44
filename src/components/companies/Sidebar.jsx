@@ -8,6 +8,7 @@ import DeepsearchFilter from './DeepsearchFilter';
 import HiringFilter from './HiringFilter';
 import SearchFilterList from '../search/SearchFilterList';
 import CompanySizeFilter from '../search/CompanySizeFilter';
+import LookalikeFilter from './LookalikeFilter';
 import useFilterState from '../search/useFilterState';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
