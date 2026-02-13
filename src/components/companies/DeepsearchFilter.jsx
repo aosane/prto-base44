@@ -21,35 +21,56 @@ export default function DeepsearchFilter({
   const [excluded, setExcluded] = useState([]);
 
   const handleGenerate = () => {
-    // Simulate AI generating included + excluded keywords based on prompt
-    // In real usage this would call an LLM
     const input = deepsearchInput.toLowerCase();
-    
-    let incl = [];
-    let excl = [];
+
+    let cat1 = [];
+    let cat2 = [];
 
     if (input.includes('agence') || input.includes('prospection')) {
-      incl = ['Agence', 'Prospection', 'Outbound', 'Lead Generation', 'Sales Automation', 'B2B'];
+      cat1 = [
+        { word: 'Agence', type: 'include' },
+        { word: 'Prospection', type: 'include' },
+        { word: 'B2B', type: 'include' },
+        { word: 'Lead Generation', type: 'include' },
+      ];
+      cat2 = [
+        { word: 'Outbound', type: 'include' },
+        { word: 'Sales Automation', type: 'include' },
+        { word: 'Email Marketing', type: 'include' },
+      ];
     } else {
-      incl = ['SaaS', 'Agency', 'Platform', 'Enterprise Software', 'Cloud Services'];
+      cat1 = [
+        { word: 'SaaS', type: 'include' },
+        { word: 'Agency', type: 'include' },
+        { word: 'Platform', type: 'include' },
+        { word: 'Enterprise Software', type: 'include' },
+      ];
+      cat2 = [
+        { word: 'Cloud Services', type: 'include' },
+        { word: 'Outbound', type: 'include' },
+        { word: 'Lead Generation', type: 'include' },
+      ];
     }
 
     if (input.includes('sauf') || input.includes('exclu') || input.includes('pas')) {
       if (input.includes('call')) {
-        excl = ['Cold Calling', 'Phone Sales', 'Telemarketing', 'Call Center'];
+        cat2 = [
+          ...cat2,
+          { word: 'Cold Calling', type: 'exclude' },
+          { word: 'Phone Sales', type: 'exclude' },
+          { word: 'Telemarketing', type: 'exclude' },
+          { word: 'Call Center', type: 'exclude' },
+        ];
       } else {
-        excl = ['Consulting', 'Freelance'];
+        cat2 = [...cat2, { word: 'Consulting', type: 'exclude' }, { word: 'Freelance', type: 'exclude' }];
       }
     }
 
-    // Merge with existing, avoiding duplicates
-    setIncluded(prev => {
-      const existing = new Set(prev);
-      return [...prev, ...incl.filter(k => !existing.has(k) && !excluded.includes(k))];
-    });
-    setExcluded(prev => {
-      const existing = new Set(prev);
-      return [...prev, ...excl.filter(k => !existing.has(k) && !included.includes(k))];
+    // Merge into keywords state, avoiding duplicates
+    setKeywords(prev => {
+      const existingWords = new Set(prev.map(k => k.word));
+      const newItems = [...cat1.map(k => ({ ...k, category: 'Business Type' })), ...cat2.map(k => ({ ...k, category: 'Activities' }))];
+      return [...prev, ...newItems.filter(k => !existingWords.has(k.word))];
     });
 
     if (onGenerate) onGenerate();
