@@ -3,44 +3,46 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export default function TooltipPortal({ children, triggerRef }) {
   const [pos, setPos] = useState(null);
+  const tooltipRef = useRef(null);
 
   useEffect(() => {
     const update = () => {
-      if (triggerRef?.current) {
-        const rect = triggerRef.current.getBoundingClientRect();
-        const tooltipHeight = 450;
-        const spaceBelow = window.innerHeight - rect.top;
-        const spaceAbove = rect.top;
+      if (!triggerRef?.current) return;
 
-        let top;
-        let bottom;
+      const rect = triggerRef.current.getBoundingClientRect();
+      const tooltipEl = tooltipRef.current;
+      const tooltipHeight = tooltipEl ? tooltipEl.offsetHeight : 450;
+      const margin = 8;
 
-        if (spaceBelow >= tooltipHeight) {
-          // Enough space below
-          top = rect.top;
-        } else if (spaceAbove >= tooltipHeight) {
-          // Place above
-          bottom = window.innerHeight - rect.bottom;
-        } else {
-          // Not enough space either way — clamp to viewport
-          top = Math.max(8, window.innerHeight - tooltipHeight - 8);
-        }
+      // Always clamp so the tooltip fits within the viewport
+      let top = rect.top;
 
-        setPos({
-          top,
-          bottom,
-          left: rect.right + 16,
-        });
+      // If it would overflow the bottom, push it up
+      if (top + tooltipHeight > window.innerHeight - margin) {
+        top = window.innerHeight - tooltipHeight - margin;
       }
-    };
-    update();
 
-    // Update on scroll/resize
+      // Never go above viewport
+      if (top < margin) {
+        top = margin;
+      }
+
+      setPos({
+        top,
+        left: rect.right + 16,
+      });
+    };
+
+    // Initial position, then re-measure once rendered
+    update();
+    const raf = requestAnimationFrame(update);
+
     const scrollEl = triggerRef?.current?.closest('.overflow-y-auto');
     if (scrollEl) scrollEl.addEventListener('scroll', update);
     window.addEventListener('resize', update);
     
     return () => {
+      cancelAnimationFrame(raf);
       if (scrollEl) scrollEl.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
@@ -50,11 +52,13 @@ export default function TooltipPortal({ children, triggerRef }) {
 
   return createPortal(
     <div
+      ref={tooltipRef}
       className="fixed z-[9999]"
       style={{
-        top: pos.top != null ? pos.top : undefined,
-        bottom: pos.bottom != null ? pos.bottom : undefined,
+        top: pos.top,
         left: pos.left,
+        maxHeight: `calc(100vh - 16px)`,
+        overflowY: 'auto',
       }}
     >
       {children}
