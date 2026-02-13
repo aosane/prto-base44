@@ -196,9 +196,9 @@ export default function DeepsearchFilter({
           )}
 
           {/* Manual add */}
-          <div className="pt-2 border-t border-gray-200 space-y-2">
+          <div className={`pt-2 border-t space-y-2 transition-opacity ${isGenerating ? 'opacity-50 pointer-events-none' : 'border-gray-200'}`}>
             <div className="text-xs font-medium text-gray-500">Ajouter manuellement</div>
-            <Select value={manualCategory} onValueChange={setManualCategory}>
+            <Select value={manualCategory} onValueChange={setManualCategory} disabled={isGenerating}>
               <SelectTrigger className="text-xs h-8">
                 <SelectValue />
               </SelectTrigger>
