@@ -307,7 +307,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
                   {/* Lookalike */}
                   <FilterSection label="Lookalike" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Lookalike')}>
-                    <SearchFilterList
+                    <LookalikeFilter
                       items={mockLookalikes}
                       filterName="Lookalike"
                       filterState={getFilter('Lookalike')}
@@ -317,6 +317,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                       removeExclude={removeExclude}
                       placeholder="Search company..."
                       renderItem={renderWithSub}
+                      onGenerateDeepsearch={handleLookalikeGenerateDeepsearch}
                     />
                   </FilterSection>
                 </div>
