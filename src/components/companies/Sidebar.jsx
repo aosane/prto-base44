@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap, Search, List, Minus, X, Check } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap, Search, List, Minus, X, Check, Sparkles } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -18,6 +18,56 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   const [headcountDept, setHeadcountDept] = useState('Accounting');
   const [headcountMin, setHeadcountMin] = useState('');
   const [headcountMax, setHeadcountMax] = useState('');
+  
+  // Deepsearch states
+  const [deepsearchInput, setDeepsearchInput] = useState('');
+  const [placeholder, setPlaceholder] = useState('');
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+  const [generatedKeywords, setGeneratedKeywords] = useState(null);
+  
+  const placeholders = ['Agence', 'SaaS', 'Outbound', 'Lead generation', 'AI tools', 'B2B software'];
+  
+  useEffect(() => {
+    if (!expandedFilters.includes('Deepsearch')) return;
+    
+    const currentText = placeholders[placeholderIndex];
+    
+    if (isTyping) {
+      if (placeholder.length < currentText.length) {
+        const timeout = setTimeout(() => {
+          setPlaceholder(currentText.slice(0, placeholder.length + 1));
+        }, 100);
+        return () => clearTimeout(timeout);
+      } else {
+        const timeout = setTimeout(() => {
+          setIsTyping(false);
+        }, 2000);
+        return () => clearTimeout(timeout);
+      }
+    } else {
+      if (placeholder.length > 0) {
+        const timeout = setTimeout(() => {
+          setPlaceholder(placeholder.slice(0, -1));
+        }, 50);
+        return () => clearTimeout(timeout);
+      } else {
+        setPlaceholderIndex((placeholderIndex + 1) % placeholders.length);
+        setIsTyping(true);
+      }
+    }
+  }, [placeholder, isTyping, placeholderIndex, expandedFilters]);
+  
+  const handleGenerateKeywords = () => {
+    // Simulate keyword generation
+    const category1Keywords = ['SaaS', 'Agency', 'Platform', 'Enterprise Software', 'Cloud Services'];
+    const category2Keywords = ['Outbound', 'Lead Generation', 'Sales Automation', 'Email Marketing', 'Cold Calling'];
+    
+    setGeneratedKeywords({
+      category1: category1Keywords,
+      category2: category2Keywords
+    });
+  };
 
   const toggleFilter = (filterName) => {
     setExpandedFilters(prev => 
@@ -393,7 +443,81 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               </div>
             )}
           </div>
-        </div>
+
+          {/* Deepsearch Filter */}
+          <div>
+            <button
+              onClick={() => toggleFilter('Deepsearch')}
+              className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
+            >
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-purple-500" />
+                <span>Deepsearch</span>
+              </div>
+              {expandedFilters.includes('Deepsearch') ? 
+                <Minus className="w-4 h-4 text-gray-400" /> : 
+                <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
+              }
+            </button>
+            {expandedFilters.includes('Deepsearch') && (
+              <div className="px-3 py-4 space-y-4 border border-gray-200 rounded-lg mx-3 mb-2">
+                <div className="space-y-3">
+                  <div className="relative">
+                    <Input
+                      type="text"
+                      value={deepsearchInput}
+                      onChange={(e) => setDeepsearchInput(e.target.value)}
+                      placeholder={placeholder}
+                      className="text-sm"
+                    />
+                  </div>
+                  <Button 
+                    onClick={handleGenerateKeywords}
+                    className="w-full bg-[#2D55EB] hover:bg-[#2442c7] text-white"
+                    size="sm"
+                  >
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Generate
+                  </Button>
+                </div>
+
+                {generatedKeywords && (
+                  <div className="space-y-3 pt-2 border-t border-gray-200">
+                    {/* Category 1 */}
+                    <div>
+                      <div className="text-xs font-medium text-gray-600 mb-2">Business Type</div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {generatedKeywords.category1.map((keyword) => (
+                          <button
+                            key={keyword}
+                            className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full hover:bg-blue-100 transition-colors"
+                          >
+                            {keyword}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Category 2 */}
+                    <div>
+                      <div className="text-xs font-medium text-gray-600 mb-2">Activities</div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {generatedKeywords.category2.map((keyword) => (
+                          <button
+                            key={keyword}
+                            className="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded-full hover:bg-purple-100 transition-colors"
+                          >
+                            {keyword}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          </div>
 
         {/* Signals Section */}
         <div className="mt-6">
