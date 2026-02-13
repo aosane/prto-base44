@@ -17,8 +17,8 @@ export default function DeepsearchFilter({
   const triggerRef = useRef(null);
   const [showTooltip, setShowTooltip] = useState(false);
   const [manualInput, setManualInput] = useState('');
-  const [included, setIncluded] = useState([]);
-  const [excluded, setExcluded] = useState([]);
+  // Each keyword: { word, type: 'include'|'exclude', category?: string }
+  const [keywords, setKeywords] = useState([]);
 
   const handleGenerate = () => {
     const input = deepsearchInput.toLowerCase();
