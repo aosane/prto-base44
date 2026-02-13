@@ -34,6 +34,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   const [deepsearchCount, setDeepsearchCount] = useState(0);
   const [deepsearchRef, setDeepsearchRef] = useState(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isLookalikeGenerating, setIsLookalikeGenerating] = useState(false);
 
   // Include/Exclude filter state
   const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll } = useFilterState();
