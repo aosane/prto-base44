@@ -67,7 +67,7 @@ export default function DeepsearchFilter({
             </div>
             <Button 
               onClick={handleGenerateKeywords}
-              className="w-full bg-[#2D55EB] hover:bg-[#2442c7] text-white"
+              className="w-full bg-[#1C64F2] hover:bg-[#1854cc] text-white"
               size="sm"
             >
               <Sparkles className="w-4 h-4 mr-2" />

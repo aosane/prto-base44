@@ -134,7 +134,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <button
             onClick={() => setActiveTab('search')}
             className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${
-              activeTab === 'search' ? 'bg-[#2D55EB] text-white' : 'text-gray-600 hover:bg-gray-100'
+              activeTab === 'search' ? 'bg-[#1C64F2] text-white' : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
             <Search className="w-4 h-4" />
@@ -143,7 +143,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
           <button
             onClick={() => setActiveTab('lists')}
             className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${
-              activeTab === 'lists' ? 'bg-[#2D55EB] text-white' : 'text-gray-600 hover:bg-gray-100'
+              activeTab === 'lists' ? 'bg-[#1C64F2] text-white' : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
             <List className="w-4 h-4" />
@@ -515,7 +515,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                     </div>
                     <div className="flex justify-end gap-2">
                       <Button variant="outline" size="sm">Reset</Button>
-                      <Button size="sm" className="bg-[#2D55EB] hover:bg-[#2442c7]">Add</Button>
+                      <Button size="sm" className="bg-[#1C64F2] hover:bg-[#1854cc]">Add</Button>
                     </div>
                   </div>
                 )}
@@ -588,7 +588,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <p className="mb-3">Organize your saved companies into lists for better targeting.</p>
             </div>
             
-            <button className="w-full px-4 py-2.5 bg-[#2D55EB] text-white text-sm font-medium rounded-lg hover:bg-[#2442c7] transition-colors">
+            <button className="w-full px-4 py-2.5 bg-[#1C64F2] text-white text-sm font-medium rounded-lg hover:bg-[#1854cc] transition-colors">
               + Create New List
             </button>
           </div>

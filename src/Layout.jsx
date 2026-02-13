@@ -36,7 +36,7 @@ export default function Layout({ children, currentPageName }) {
           {isSidebarOpen ? (
             <>
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-[#2D55EB] rounded flex items-center justify-center">
+                <div className="w-6 h-6 bg-[#1C64F2] rounded flex items-center justify-center">
                   <span className="text-white text-xs font-bold">P</span>
                 </div>
                 <span className="font-semibold text-gray-900">Pronto</span>
