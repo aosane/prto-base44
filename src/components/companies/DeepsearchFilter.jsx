@@ -114,9 +114,19 @@ export default function DeepsearchFilter({
   }, [totalCount]);
 
   // Load generated keywords from lookalike
+  const prevGeneratedRef = useRef(null);
   useEffect(() => {
-    if (generatedKeywords && Array.isArray(generatedKeywords) && generatedKeywords.length > 0) {
-      setKeywords(generatedKeywords);
+    if (generatedKeywords && Array.isArray(generatedKeywords) && generatedKeywords.length > 0 && generatedKeywords !== prevGeneratedRef.current) {
+      prevGeneratedRef.current = generatedKeywords;
+      setKeywords(prev => {
+        const existingWords = new Set(prev.map(k => k.word));
+        const newItems = generatedKeywords.filter(k => !existingWords.has(k.word));
+        return [...prev, ...newItems];
+      });
+      // Auto-expand Deepsearch
+      if (!expandedFilters.includes('Deepsearch')) {
+        toggleFilter('Deepsearch');
+      }
     }
   }, [generatedKeywords]);
 
