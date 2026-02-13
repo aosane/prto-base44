@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap, Search, List, Minus } from 'lucide-react';
+import { ChevronRight, ChevronUp, ChevronDown, Plus, Zap, Search, List, Minus, RotateCcw } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   const [expandedFilters, setExpandedFilters] = useState([]);
   const [expandedSection, setExpandedSection] = useState(null);
   const [companySizeRange, setCompanySizeRange] = useState([0, 300000]);
-  const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount } = useFilterState();
+  const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll } = useFilterState();
 
   const toggleFilter = (name) => {
     setExpandedFilters(prev => prev.includes(name) ? prev.filter(f => f !== name) : [...prev, name]);
@@ -94,11 +94,25 @@ export default function Sidebar({ activeTab, setActiveTab }) {
       <div className="p-4 flex-1 overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-xl font-semibold text-gray-900">Leads</h1>
-          {activeCount > 0 && (
-            <span className="text-xs font-medium text-[#1C64F2] bg-[#1C64F2]/10 px-2 py-0.5 rounded-full">
-              {activeCount} filter{activeCount > 1 ? 's' : ''}
-            </span>
-          )}
+          <div className="flex items-center gap-2">
+            {activeCount > 0 && (
+              <>
+                <button
+                  onClick={() => {
+                    resetAll();
+                    setCompanySizeRange([0, 300000]);
+                  }}
+                  className="text-xs font-medium text-gray-500 hover:text-red-600 flex items-center gap-1 transition-colors"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  Reset
+                </button>
+                <span className="text-xs font-medium text-[#1C64F2] bg-[#1C64F2]/10 px-2 py-0.5 rounded-full">
+                  {activeCount} filter{activeCount > 1 ? 's' : ''}
+                </span>
+              </>
+            )}
+          </div>
         </div>
 
         <div className="flex items-center gap-2 mb-4">
