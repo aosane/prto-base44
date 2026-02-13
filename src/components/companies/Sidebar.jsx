@@ -251,7 +251,67 @@ export default function Sidebar({ activeTab, setActiveTab }) {
             {/* Signals Section */}
             <div className="mt-6">
               <button onClick={() => toggleSection('signals')} className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-gray-400 uppercase mb-2 hover:text-gray-600">
-...
+                <div className="flex items-center gap-2">
+                  <Zap className="w-4 h-4" />
+                  <span>SIGNALS</span>
+                </div>
+                {expandedSection === 'signals' ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+
+              {expandedSection === 'signals' && (
+                <div className="space-y-1">
+                  {/* Headcount Growth */}
+                  <FilterSection label="Headcount growth" expandedFilters={expandedFilters} toggleFilter={toggleFilter}>
+                    <div className="px-3 py-4 space-y-3 border border-gray-200 rounded-lg mx-3 mb-2">
+                      <Select value={headcountDept} onValueChange={setHeadcountDept}>
+                        <SelectTrigger className="w-full text-sm"><SelectValue /></SelectTrigger>
+                        <SelectContent>
+                          {departments.map((dept) => <SelectItem key={dept} value={dept}>{dept}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                      <div className="grid grid-cols-2 gap-2">
+                        <Input type="number" placeholder="Min (%)" value={headcountMin} onChange={(e) => setHeadcountMin(e.target.value)} className="text-sm" />
+                        <Input type="number" placeholder="Max (%)" value={headcountMax} onChange={(e) => setHeadcountMax(e.target.value)} className="text-sm" />
+                      </div>
+                      <div className="flex justify-end gap-2">
+                        <Button variant="outline" size="sm">Reset</Button>
+                        <Button size="sm" className="bg-[#1C64F2] hover:bg-[#1854cc]">Add</Button>
+                      </div>
+                    </div>
+                  </FilterSection>
+
+                  {/* Hiring */}
+                  <HiringFilter expandedFilters={expandedFilters} toggleFilter={toggleFilter} />
+
+                  {/* Tech Stack */}
+                  <FilterSection label="Tech Stack" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Tech Stack')}>
+                    <SearchFilterList
+                      items={mockTechStack}
+                      filterName="Tech Stack"
+                      filterState={getFilter('Tech Stack')}
+                      toggleInclude={toggleInclude}
+                      toggleExclude={toggleExclude}
+                      removeInclude={removeInclude}
+                      removeExclude={removeExclude}
+                      placeholder="Search technologies..."
+                    />
+                  </FilterSection>
+
+                  {/* Lookalike */}
+                  <FilterSection label="Lookalike" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Lookalike')}>
+                    <SearchFilterList
+                      items={mockLookalikes}
+                      filterName="Lookalike"
+                      filterState={getFilter('Lookalike')}
+                      toggleInclude={toggleInclude}
+                      toggleExclude={toggleExclude}
+                      removeInclude={removeInclude}
+                      removeExclude={removeExclude}
+                      placeholder="Search company..."
+                      renderItem={renderWithSub}
+                    />
+                  </FilterSection>
+                </div>
               )}
             </div>
 
