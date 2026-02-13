@@ -71,15 +71,22 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   };
 
   const handleLookalikeGenerateDeepsearch = (keywords) => {
-    // Add keywords to deepsearch
+    // Add keywords to deepsearch - group by category
+    const grouped = {};
+    keywords.forEach(k => {
+      const cat = k.category || 'Other';
+      if (!grouped[cat]) grouped[cat] = [];
+      grouped[cat].push(k.word);
+    });
+
     setGeneratedKeywords(prev => ({
       ...prev,
-      ...Object.fromEntries(keywords.map((k, i) => [`category${i + 1}`, [k.word]]))
+      ...grouped
     }));
 
-    // Trigger animation on deepsearch
+    // Trigger animation on deepsearch for 10 seconds
     setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 3000);
+    setTimeout(() => setIsAnimating(false), 10000);
 
     // Scroll and focus deepsearch
     setTimeout(() => {
