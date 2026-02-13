@@ -75,16 +75,34 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   const handleLookalikeGenerateDeepsearch = (keywords) => {
     setGeneratedKeywords(keywords);
 
-    // Trigger animation on deepsearch for 10 seconds
-    setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 10000);
+    // Auto-select relevant industries
+    const generatedIndustries = ['Software Development', 'Information Technology', 'E-commerce'];
+    bulkInclude('Industry', generatedIndustries);
 
-    // Scroll and focus deepsearch
+    // Expand Industry filter if not already
+    if (!expandedFilters.includes('Industry')) {
+      setExpandedFilters(prev => [...prev, 'Industry']);
+    }
+
+    // Trigger animation on both sections for 10 seconds
+    setIsAnimating(true);
+    setIsIndustryAnimating(true);
+    setTimeout(() => {
+      setIsAnimating(false);
+      setIsIndustryAnimating(false);
+    }, 10000);
+
+    // Scroll to industry first, then deepsearch
+    setTimeout(() => {
+      if (industryRef) {
+        industryRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 100);
     setTimeout(() => {
       if (deepsearchRef) {
         deepsearchRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-    }, 100);
+    }, 2000);
   };
 
   const toggleFilter = (filterName) => {
