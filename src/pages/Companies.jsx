@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Sidebar from '../components/companies/Sidebar';
+import MainContent from '../components/companies/MainContent';
 
 export default function Companies() {
+  const [activeTab, setActiveTab] = useState('search');
+
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold text-gray-900 mb-4">Companies</h1>
-      <p className="text-gray-600">Browse and manage companies</p>
+    <div className="h-full flex overflow-hidden bg-gray-50">
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <MainContent activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
   );
 }
