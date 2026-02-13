@@ -325,7 +325,10 @@ export default function Sidebar({ activeTab, setActiveTab }) {
             </div>
 
             {/* Deepsearch - after signals */}
-            <div className="mt-6">
+            <div 
+              ref={setDeepsearchRef}
+              className={`mt-6 transition-all duration-500 ${isAnimating ? 'ring-2 ring-purple-400 rounded-lg p-2' : ''}`}
+            >
               <DeepsearchFilter
                 expandedFilters={expandedFilters}
                 toggleFilter={toggleFilter}
