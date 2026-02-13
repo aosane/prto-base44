@@ -82,7 +82,7 @@ export default function DeepsearchFilter({
     if (!word) return;
     setKeywords(prev => {
       const without = prev.filter(k => k.word !== word);
-      return [...without, { word, type, category: 'Manual' }];
+      return [...without, { word, type, category: manualCategory }];
     });
     setManualInput('');
   };
