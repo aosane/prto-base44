@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, X } from 'lucide-react';
+import { Check, Ban } from 'lucide-react';
 
 export default function IncludeExcludeButtons({ itemId, included, excluded, onInclude, onExclude }) {
   const isIncluded = included.includes(itemId);
@@ -27,7 +27,7 @@ export default function IncludeExcludeButtons({ itemId, included, excluded, onIn
           isExcluded ? 'bg-red-500 text-white' : 'bg-gray-100 hover:bg-red-100 text-gray-400'
         }`}
       >
-        <X className="w-3 h-3" />
+        <Ban className="w-3 h-3" />
       </button>
     </div>
   );

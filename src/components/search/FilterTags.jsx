@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Check } from 'lucide-react';
+import { X, Check, Ban } from 'lucide-react';
 
 export default function FilterTags({ included, excluded, onRemoveInclude, onRemoveExclude }) {
   if (included.length === 0 && excluded.length === 0) return null;
@@ -17,7 +17,7 @@ export default function FilterTags({ included, excluded, onRemoveInclude, onRemo
       ))}
       {excluded.map((item) => (
         <span key={`exc-${item}`} className="flex items-center gap-1 px-2 py-0.5 bg-red-50 text-red-700 rounded-full text-xs">
-          <X className="w-3 h-3" />
+          <Ban className="w-3 h-3" />
           <span>{item}</span>
           <button onClick={() => onRemoveExclude(item)}>
             <X className="w-3 h-3" />
