@@ -523,20 +523,9 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               </div>
 
               {/* Hiring a job */}
-              <div className="relative">
-                <button
-                  onClick={() => toggleFilter('Hiring a job')}
-                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
-                >
-                  <span>Hiring a job</span>
-                  {expandedFilters.includes('Hiring a job') ? 
-                    <Minus className="w-4 h-4 text-gray-400" /> : 
-                    <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
-                  }
-                </button>
+              <HiringFilter expandedFilters={expandedFilters} toggleFilter={toggleFilter} />
 
-                {/* Tooltip - positioned to the right */}
-                {expandedFilters.includes('Hiring a job') && (
+              {false && expandedFilters.includes('Hiring a job') && (
                   <div className="absolute left-full top-0 ml-4 w-80 z-50">
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 shadow-lg">
                       <div className="flex items-start gap-2">
