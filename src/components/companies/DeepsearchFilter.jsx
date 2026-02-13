@@ -152,7 +152,11 @@ export default function DeepsearchFilter({
       )}
 
       {expandedFilters.includes('Deepsearch') && (
-        <div className="px-3 py-4 space-y-4 border border-gray-200 rounded-lg mx-3 mb-2">
+        <div className={`px-3 py-4 space-y-4 border-2 rounded-lg mx-3 mb-2 transition-all duration-1000 ${
+          isGenerating 
+            ? 'border-purple-500 bg-purple-50 animate-pulse shadow-lg shadow-purple-200' 
+            : 'border-gray-200'
+        }`}>
           {/* AI Prompt */}
           <div className="space-y-3">
             <div className="relative">
