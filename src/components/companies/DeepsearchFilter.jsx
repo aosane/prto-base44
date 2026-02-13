@@ -15,6 +15,7 @@ export default function DeepsearchFilter({
   handleGenerateKeywords: onGenerate,
   generatedKeywords,
   onKeywordsCountChange,
+  isGenerating = false,
 }) {
   const triggerRef = useRef(null);
   const [showTooltip, setShowTooltip] = useState(false);
