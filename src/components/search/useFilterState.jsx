@@ -15,7 +15,7 @@ export default function useFilterState() {
 
   const toggleInclude = useCallback((filterName, itemId) => {
     setFilters(prev => {
-      const f = prev[filterName];
+      const f = prev[filterName] || { included: [], excluded: [] };
       const isIncluded = f.included.includes(itemId);
       return {
         ...prev,
