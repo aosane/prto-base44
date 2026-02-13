@@ -400,7 +400,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               </div>
 
               {/* Hiring a job */}
-              <div>
+              <div className="relative">
                 <button
                   onClick={() => toggleFilter('Hiring a job')}
                   className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
@@ -411,10 +411,11 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                     <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
                   }
                 </button>
+
+                {/* Tooltip - positioned to the right */}
                 {expandedFilters.includes('Hiring a job') && (
-                  <div className="px-3 py-4 border border-gray-200 rounded-lg mx-3 mb-2 space-y-4">
-                    {/* Tooltip */}
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3">
+                  <div className="absolute left-full top-0 ml-4 w-80 z-50">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 shadow-lg">
                       <div className="flex items-start gap-2">
                         <div className="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5">i</div>
                         <div>
@@ -448,7 +449,11 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                         </div>
                       </div>
                     </div>
+                  </div>
+                )}
 
+                {expandedFilters.includes('Hiring a job') && (
+                  <div className="px-3 py-4 border border-gray-200 rounded-lg mx-3 mb-2 space-y-4">
                     {/* Filters */}
                     <div className="space-y-3">
                       <div>
@@ -459,11 +464,6 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                       <div>
                         <label className="text-xs font-medium text-gray-700 mb-1.5 block">Keywords in job description</label>
                         <Input placeholder="e.g., Ruby on Rails, React, Leadership" className="text-sm" />
-                      </div>
-
-                      <div>
-                        <label className="text-xs font-medium text-gray-700 mb-1.5 block">Industry</label>
-                        <Input placeholder="e.g., Technology, Healthcare, Finance" className="text-sm" />
                       </div>
 
                       <div>
