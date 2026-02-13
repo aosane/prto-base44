@@ -37,7 +37,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   const [isLookalikeGenerating, setIsLookalikeGenerating] = useState(false);
 
   // Include/Exclude filter state
-  const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll } = useFilterState();
+  const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll, bulkInclude } = useFilterState();
 
   const placeholders = ['Agence', 'SaaS', 'Outbound', 'Lead generation', 'AI tools', 'B2B software'];
 
