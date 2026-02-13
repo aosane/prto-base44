@@ -37,6 +37,38 @@ export default function Sidebar({ activeTab, setActiveTab }) {
     { name: 'Microsoft', domain: 'microsoft.com' },
   ];
 
+  const mockIndustries = [
+    'Software Development',
+    'Information Technology',
+    'Financial Services',
+    'E-commerce',
+    'Healthcare',
+    'Consulting',
+    'Manufacturing',
+    'Retail',
+    'Education',
+    'Marketing & Advertising',
+  ];
+
+  const mockLocations = [
+    { name: 'United States', type: 'Country' },
+    { name: 'San Francisco, CA', type: 'City' },
+    { name: 'New York, NY', type: 'City' },
+    { name: 'London, UK', type: 'City' },
+    { name: 'Paris, France', type: 'City' },
+    { name: 'Berlin, Germany', type: 'City' },
+    { name: 'California', type: 'State' },
+    { name: 'Europe', type: 'Region' },
+  ];
+
+  const mockLookalikeCompanies = [
+    { name: 'Stripe', domain: 'stripe.com', industry: 'Fintech' },
+    { name: 'Shopify', domain: 'shopify.com', industry: 'E-commerce' },
+    { name: 'Slack', domain: 'slack.com', industry: 'Software' },
+    { name: 'Figma', domain: 'figma.com', industry: 'Design Tools' },
+    { name: 'Notion', domain: 'notion.so', industry: 'Productivity' },
+  ];
+
   const departments = ['Accounting', 'Sales', 'Marketing', 'Engineering', 'Product', 'Operations', 'HR', 'All Departments'];
 
 
@@ -146,6 +178,23 @@ export default function Sidebar({ activeTab, setActiveTab }) {
             {expandedFilters.includes('Industry') && (
               <div className="px-3 py-3 space-y-3 border border-gray-200 rounded-lg mx-3 mb-2">
                 <Input placeholder="Search industries..." className="text-sm" />
+                <div className="space-y-1 max-h-48 overflow-y-auto">
+                  {mockIndustries.map((industry) => (
+                    <div key={industry} className="flex items-center justify-between py-2 text-sm hover:bg-gray-50 rounded px-2 cursor-pointer">
+                      <span>{industry}</span>
+                      <div className="flex gap-1">
+                        <button className="w-6 h-6 rounded flex items-center justify-center bg-gray-100 hover:bg-blue-100">
+                          <Check className="w-3 h-3 text-gray-400" />
+                        </button>
+                        <button className="w-6 h-6 rounded flex items-center justify-center bg-gray-100 hover:bg-red-100">
+                          <div className="w-3 h-3 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                            <div className="w-2 h-0.5 bg-gray-400"></div>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -165,6 +214,26 @@ export default function Sidebar({ activeTab, setActiveTab }) {
             {expandedFilters.includes('Location') && (
               <div className="px-3 py-3 space-y-3 border border-gray-200 rounded-lg mx-3 mb-2">
                 <Input placeholder="Search locations..." className="text-sm" />
+                <div className="space-y-1 max-h-48 overflow-y-auto">
+                  {mockLocations.map((location) => (
+                    <div key={location.name} className="flex items-center justify-between py-2 text-sm hover:bg-gray-50 rounded px-2 cursor-pointer">
+                      <div>
+                        <div className="font-medium">{location.name}</div>
+                        <div className="text-xs text-gray-500">{location.type}</div>
+                      </div>
+                      <div className="flex gap-1">
+                        <button className="w-6 h-6 rounded flex items-center justify-center bg-gray-100 hover:bg-blue-100">
+                          <Check className="w-3 h-3 text-gray-400" />
+                        </button>
+                        <button className="w-6 h-6 rounded flex items-center justify-center bg-gray-100 hover:bg-red-100">
+                          <div className="w-3 h-3 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                            <div className="w-2 h-0.5 bg-gray-400"></div>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -543,9 +612,22 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                   }
                 </button>
                 {expandedFilters.includes('Lookalike') && (
-                  <div className="px-3 py-3 border border-gray-200 rounded-lg mx-3 mb-2">
-                    <Input placeholder="Company name..." className="text-sm" />
-                    <p className="text-xs text-gray-500 mt-2">Find companies similar to this one</p>
+                  <div className="px-3 py-3 space-y-3 border border-gray-200 rounded-lg mx-3 mb-2">
+                    <Input placeholder="Search company..." className="text-sm" />
+                    <div className="space-y-1 max-h-48 overflow-y-auto">
+                      {mockLookalikeCompanies.map((company) => (
+                        <div key={company.name} className="flex items-center justify-between py-2 text-sm hover:bg-gray-50 rounded px-2 cursor-pointer">
+                          <div>
+                            <div className="font-medium">{company.name}</div>
+                            <div className="text-xs text-gray-500">{company.domain} • {company.industry}</div>
+                          </div>
+                          <button className="w-6 h-6 rounded flex items-center justify-center bg-gray-100 hover:bg-blue-100">
+                            <Check className="w-3 h-3 text-gray-400" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-xs text-gray-500">Find companies similar to the selected one</p>
                   </div>
                 )}
               </div>
