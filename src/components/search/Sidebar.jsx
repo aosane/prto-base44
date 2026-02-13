@@ -17,12 +17,6 @@ export default function Sidebar({ activeTab, setActiveTab }) {
     { label: 'Seniority' },
     { label: 'Department' },
     { label: 'Year founded' },
-    { label: 'Funding', badge: 'SOON' },
-    { label: 'Technology', badge: 'SOON' },
-    { label: 'Hiring', badge: 'SOON' },
-    { label: 'CRM', badge: 'SOON' },
-    { label: 'Annual revenue', badge: 'SOON' },
-    { label: 'Number of followers', badge: 'SOON' },
   ];
 
   const signalFilters = [
