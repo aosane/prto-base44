@@ -125,8 +125,8 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
 
   return (
-    <aside className="w-72 bg-white border-r border-gray-200 relative z-10 h-full">
-      <div className="p-4 h-full overflow-y-auto" style={{ overflow: 'visible overlay' }}>
+    <aside className="w-72 bg-white border-r border-gray-200 relative z-10 flex-shrink-0">
+      <div className="p-4">
         <h1 className="text-xl font-semibold text-gray-900 mb-4">Companies</h1>
         
         <div className="flex items-center gap-2 mb-4">
