@@ -166,31 +166,19 @@ export default function DeepsearchFilter({
             </Button>
           </div>
 
-          {/* Keywords display */}
-          {(included.length > 0 || excluded.length > 0) && (
+          {/* Keywords display grouped by category */}
+          {keywords.length > 0 && (
             <div className="space-y-3 pt-3 border-t border-gray-200">
-              {/* Included */}
-              {included.length > 0 && (
-                <div>
-                  <div className="text-xs font-medium text-gray-500 mb-1.5">Inclus</div>
+              {categories.map((cat) => (
+                <div key={cat}>
+                  <div className="text-xs font-medium text-gray-600 mb-2">{cat}</div>
                   <div className="flex flex-wrap gap-1.5">
-                    {included.map((keyword) => (
-                      <KeywordTag key={keyword} keyword={keyword} type="include" onSwitch={() => moveToExclude(keyword)} onRemove={() => removeKeyword(keyword)} />
+                    {keywords.filter(k => (k.category || 'Other') === cat).map((k) => (
+                      <KeywordTag key={k.word} keyword={k.word} type={k.type} onSwitch={() => toggleKeywordType(k.word)} onRemove={() => removeKeyword(k.word)} />
                     ))}
                   </div>
                 </div>
-              )}
-              {/* Excluded */}
-              {excluded.length > 0 && (
-                <div>
-                  <div className="text-xs font-medium text-gray-500 mb-1.5">Exclus</div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {excluded.map((keyword) => (
-                      <KeywordTag key={keyword} keyword={keyword} type="exclude" onSwitch={() => moveToInclude(keyword)} onRemove={() => removeKeyword(keyword)} />
-                    ))}
-                  </div>
-                </div>
-              )}
+              ))}
             </div>
           )}
 
