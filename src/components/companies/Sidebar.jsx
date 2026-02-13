@@ -190,14 +190,14 @@ export default function Sidebar({ activeTab, setActiveTab }) {
         <div className="flex items-center gap-2 mb-4">
           <button
             onClick={() => setActiveTab('search')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${activeTab === 'search' ? 'bg-[#1C64F2] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${activeTab === 'search' ? 'bg-[#1C64F2]/10 text-[#1C64F2]' : 'text-gray-600 hover:bg-gray-100'}`}
           >
             <Search className="w-4 h-4" />
             Search
           </button>
           <button
             onClick={() => setActiveTab('lists')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${activeTab === 'lists' ? 'bg-[#1C64F2] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md ${activeTab === 'lists' ? 'bg-[#1C64F2]/10 text-[#1C64F2]' : 'text-gray-600 hover:bg-gray-100'}`}
           >
             <List className="w-4 h-4" />
             Saved Lists
