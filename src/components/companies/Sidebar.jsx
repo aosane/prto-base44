@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function Sidebar({ activeTab, setActiveTab }) {
   const [expandedFilters, setExpandedFilters] = useState([]);
@@ -453,6 +454,26 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-purple-500" />
                 <span>Deepsearch</span>
+                <TooltipProvider>
+                  <Tooltip delayDuration={200}>
+                    <TooltipTrigger asChild>
+                      <div className="w-3.5 h-3.5 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center cursor-help hover:bg-purple-200 transition-colors">
+                        <span className="text-[10px] font-medium">?</span>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="right" className="max-w-xs">
+                      <div className="space-y-2">
+                        <p className="font-semibold text-sm">🔍 Recherche intelligente</p>
+                        <p className="text-xs">Décrivez le type d'entreprise que vous recherchez (ex: "Agence", "SaaS", "Outbound").</p>
+                        <p className="text-xs">L'IA génèrera des mots-clés pertinents en 2 catégories :</p>
+                        <ul className="text-xs list-disc list-inside space-y-1">
+                          <li><span className="font-medium">Type d'entreprise</span> (SaaS, Agence, etc.)</li>
+                          <li><span className="font-medium">Activités</span> (Outbound, Lead gen, etc.)</li>
+                        </ul>
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
               {expandedFilters.includes('Deepsearch') ? 
                 <Minus className="w-4 h-4 text-gray-400" /> : 
