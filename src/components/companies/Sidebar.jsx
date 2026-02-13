@@ -319,6 +319,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
                       placeholder="Search company..."
                       renderItem={renderWithSub}
                       onGenerateDeepsearch={handleLookalikeGenerateDeepsearch}
+                      onGeneratingChange={setIsLookalikeGenerating}
                     />
                   </FilterSection>
                 </div>
