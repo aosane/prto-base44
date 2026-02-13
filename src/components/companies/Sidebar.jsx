@@ -212,33 +212,29 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               {/* Include/Exclude filters */}
               {filterConfigs.map((config) => {
                 const isIndustry = config.label === 'Industry';
-                const content = (
-                  <FilterSection key={config.label} label={config.label} expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter(config.label)}>
-                    <SearchFilterList
-                      items={config.items}
-                      filterName={config.label}
+                return (
+                  <div key={config.label} ref={isIndustry ? setIndustryRef : undefined}>
+                    <FilterSection
+                      label={config.label}
+                      expandedFilters={expandedFilters}
+                      toggleFilter={toggleFilter}
                       filterState={getFilter(config.label)}
-                      toggleInclude={toggleInclude}
-                      toggleExclude={toggleExclude}
-                      removeInclude={removeInclude}
-                      removeExclude={removeExclude}
-                      placeholder={config.placeholder}
-                      renderItem={config.render}
-                    />
-                  </FilterSection>
-                );
-                if (isIndustry) {
-                  return (
-                    <div 
-                      key={config.label}
-                      ref={setIndustryRef}
-                      className={`transition-all duration-1000 ${isIndustryAnimating ? 'ring-2 ring-purple-400 ring-opacity-60 rounded-lg p-1 shadow-lg shadow-purple-200' : ''}`}
+                      isHighlighted={isIndustry && isIndustryAnimating}
                     >
-                      {content}
-                    </div>
-                  );
-                }
-                return content;
+                      <SearchFilterList
+                        items={config.items}
+                        filterName={config.label}
+                        filterState={getFilter(config.label)}
+                        toggleInclude={toggleInclude}
+                        toggleExclude={toggleExclude}
+                        removeInclude={removeInclude}
+                        removeExclude={removeExclude}
+                        placeholder={config.placeholder}
+                        renderItem={config.render}
+                      />
+                    </FilterSection>
+                  </div>
+                );
               })}
 
               {/* Company Size */}
