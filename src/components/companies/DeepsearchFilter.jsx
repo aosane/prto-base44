@@ -27,13 +27,27 @@ export default function DeepsearchFilter({
           <Sparkles className="w-4 h-4 text-purple-500" />
           <span>Deepsearch</span>
         </div>
-        {expandedFilters.includes('Deepsearch') ? 
-          <Minus className="w-4 h-4 text-gray-400" /> : 
-          <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
-        }
+        <div className="flex items-center gap-1">
+          {expandedFilters.includes('Deepsearch') && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowTooltip(prev => !prev);
+              }}
+              className="p-0.5 rounded hover:bg-gray-100 text-gray-400 hover:text-purple-500 transition-colors"
+              title={showTooltip ? "Fermer l'aide" : "Comment ça marche ?"}
+            >
+              {showTooltip ? <X className="w-3.5 h-3.5" /> : <HelpCircle className="w-3.5 h-3.5" />}
+            </button>
+          )}
+          {expandedFilters.includes('Deepsearch') ? 
+            <Minus className="w-4 h-4 text-gray-400" /> : 
+            <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
+          }
+        </div>
       </button>
 
-      {expandedFilters.includes('Deepsearch') && (
+      {showTooltip && expandedFilters.includes('Deepsearch') && (
         <TooltipPortal triggerRef={triggerRef}>
           <DeepsearchTooltip />
         </TooltipPortal>
