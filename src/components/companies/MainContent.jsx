@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import CompanyTable from './CompanyTable';
 import AlertBanner from './AlertBanner';
-import AlertFooterCard from './AlertFooterCard';
+
 import AddToListDialog from './AddToListDialog';
 
 export default function MainContent({ activeTab, setActiveTab, filterCount = 0 }) {
