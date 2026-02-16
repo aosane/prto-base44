@@ -18,7 +18,7 @@ export default function Layout({ children, currentPageName }) {
 
   const navItems = [
     { name: 'Dashboard', icon: Home, path: createPageUrl('Dashboard') },
-    { name: 'Companies', icon: Building2, path: createPageUrl('Companies') },
+    { name: 'Companies', icon: Building2, path: createPageUrl('Companies'), isDefault: true },
     { name: 'Leads', icon: UserPlus, path: createPageUrl('Search') },
     { name: 'Alerts', icon: Bell, path: createPageUrl('Alerts') }
   ];
