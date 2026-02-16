@@ -4,11 +4,12 @@ import MainContent from '../components/companies/MainContent';
 
 export default function Companies() {
   const [activeTab, setActiveTab] = useState('search');
+  const [filterCount, setFilterCount] = useState(0);
 
   return (
     <div className="h-full flex bg-gray-50">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <MainContent activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onFilterCountChange={setFilterCount} />
+      <MainContent activeTab={activeTab} setActiveTab={setActiveTab} filterCount={filterCount} />
     </div>
   );
 }
