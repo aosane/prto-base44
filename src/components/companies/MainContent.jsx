@@ -73,8 +73,7 @@ export default function MainContent({ activeTab, setActiveTab, filterCount = 0 }
           {/* Company table */}
           <CompanyTable />
 
-          {/* Option B: Alert card after results */}
-          <AlertFooterCard />
+
         </div>
 
         {/* Option C: Add to list dialog with alert toggle */}
