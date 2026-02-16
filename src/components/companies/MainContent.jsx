@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Upload, ChevronDown, Download, FileText, Link as LinkIcon, List, Bell } from 'lucide-react';
+import { Upload, ChevronDown, Download, FileText, Link as LinkIcon, List, Bell, FolderPlus, Users, Sparkles } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import CompanyTable from './CompanyTable';
 
-export default function MainContent({ activeTab, setActiveTab }) {
+export default function MainContent({ activeTab, setActiveTab, filterCount = 0 }) {
   const templates = [
     { name: 'SaaS Companies (Series A-B)', filters: 5 },
     { name: 'Fintech Startups', filters: 4 },
