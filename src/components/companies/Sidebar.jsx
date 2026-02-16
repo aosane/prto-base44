@@ -155,6 +155,10 @@ export default function Sidebar({ activeTab, setActiveTab, onFilterCountChange }
 
   const activeCount = getActiveCount() + deepsearchCount;
 
+  useEffect(() => {
+    if (onFilterCountChange) onFilterCountChange(activeCount);
+  }, [activeCount, onFilterCountChange]);
+
   return (
     <aside className="w-72 bg-white border-r border-gray-200 relative z-10 flex-shrink-0 h-full flex flex-col">
       <div className="p-4 flex-1 overflow-y-auto">
