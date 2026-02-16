@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, ChevronDown, Download, FileText, Link as LinkIcon, List } from 'lucide-react';
+import { Upload, ChevronDown, Download, FileText, Link as LinkIcon, List, Bell } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -53,6 +53,7 @@ export default function MainContent({ activeTab, setActiveTab }) {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">QUICKSTART</h2>
+            <div className="flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
@@ -76,6 +77,11 @@ export default function MainContent({ activeTab, setActiveTab }) {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            <button className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <Bell className="w-4 h-4" />
+              Créer une alerte
+            </button>
+            </div>
           </div>
         </div>
 

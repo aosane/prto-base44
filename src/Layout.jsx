@@ -7,6 +7,7 @@ import {
   Building2, 
   UserPlus, 
   Zap,
+  Bell,
   Menu,
   X
 } from 'lucide-react';
@@ -20,7 +21,8 @@ export default function Layout({ children, currentPageName }) {
     { name: 'Personas', icon: Users, path: createPageUrl('Personas') },
     { name: 'Companies', icon: Building2, path: createPageUrl('Companies') },
     { name: 'Leads', icon: UserPlus, path: createPageUrl('Search') },
-    { name: 'Signals', icon: Zap, path: createPageUrl('Signals') }
+    { name: 'Signals', icon: Zap, path: createPageUrl('Signals') },
+    { name: 'Alerts', icon: Bell, path: createPageUrl('Alerts') }
   ];
 
   const isActive = (path) => {

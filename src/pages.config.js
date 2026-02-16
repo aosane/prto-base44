@@ -52,6 +52,7 @@ import Dashboard from './pages/Dashboard';
 import Personas from './pages/Personas';
 import Search from './pages/Search';
 import Signals from './pages/Signals';
+import Alerts from './pages/Alerts';
 import __Layout from './Layout.jsx';
 
 
@@ -61,6 +62,7 @@ export const PAGES = {
     "Personas": Personas,
     "Search": Search,
     "Signals": Signals,
+    "Alerts": Alerts,
 }
 
 export const pagesConfig = {
