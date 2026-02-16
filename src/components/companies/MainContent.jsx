@@ -42,6 +42,36 @@ export default function MainContent({ activeTab, setActiveTab, filterCount = 0 }
     );
   }
 
+  if (filterCount > 0) {
+    return (
+      <main className="flex-1 overflow-y-auto bg-white relative z-0">
+        <div className="px-6 py-4">
+          {/* Header with count and action buttons */}
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-900">10 companies</h2>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" className="gap-2 text-sm">
+                <FolderPlus className="w-4 h-4" />
+                Add to list
+              </Button>
+              <Button className="gap-2 text-sm bg-[#1C64F2] hover:bg-[#1854cc]">
+                <Sparkles className="w-4 h-4" />
+                Search employees
+              </Button>
+              <Button variant="outline" className="gap-2 text-sm">
+                <Bell className="w-4 h-4" />
+                Créer une alerte
+              </Button>
+            </div>
+          </div>
+
+          {/* Company table */}
+          <CompanyTable />
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="flex-1 overflow-y-auto bg-white flex items-center justify-center relative z-0">
       <div className="w-full max-w-3xl px-6">
@@ -79,10 +109,6 @@ export default function MainContent({ activeTab, setActiveTab, filterCount = 0 }
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <button className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50">
-              <Bell className="w-4 h-4" />
-              Créer une alerte
-            </button>
             </div>
           </div>
         </div>
