@@ -54,7 +54,7 @@ export default function MainContent({ activeTab, setActiveTab, filterCount = 0 }
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-900">10 companies</h2>
             <div className="flex items-center gap-2">
-              <Button variant="outline" className="gap-2 text-sm">
+              <Button variant="outline" className="gap-2 text-sm" onClick={() => setShowAddToList(true)}>
                 <FolderPlus className="w-4 h-4" />
                 Add to list
               </Button>
@@ -62,16 +62,23 @@ export default function MainContent({ activeTab, setActiveTab, filterCount = 0 }
                 <Sparkles className="w-4 h-4" />
                 Search employees
               </Button>
-              <Button variant="outline" className="gap-2 text-sm">
-                <Bell className="w-4 h-4" />
-                Créer une alerte
-              </Button>
             </div>
+          </div>
+
+          {/* Option A: Alert banner under header */}
+          <div className="mb-4">
+            <AlertBanner />
           </div>
 
           {/* Company table */}
           <CompanyTable />
+
+          {/* Option B: Alert card after results */}
+          <AlertFooterCard />
         </div>
+
+        {/* Option C: Add to list dialog with alert toggle */}
+        <AddToListDialog open={showAddToList} onOpenChange={setShowAddToList} />
       </main>
     );
   }
