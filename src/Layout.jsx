@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from './utils';
 import { 
   Home, 
@@ -14,11 +14,18 @@ import {
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+
+  useEffect(() => {
+    if (location.pathname === '/' || location.pathname === '') {
+      navigate(createPageUrl('Companies'), { replace: true });
+    }
+  }, [location.pathname]);
 
   const navItems = [
     { name: 'Dashboard', icon: Home, path: createPageUrl('Dashboard') },
-    { name: 'Companies', icon: Building2, path: createPageUrl('Companies'), isDefault: true },
+    { name: 'Companies', icon: Building2, path: createPageUrl('Companies') },
     { name: 'Leads', icon: UserPlus, path: createPageUrl('Search') },
     { name: 'Alerts', icon: Bell, path: createPageUrl('Alerts') }
   ];
