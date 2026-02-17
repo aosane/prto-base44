@@ -9,6 +9,8 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
   const [peopleExpanded, setPeopleExpanded] = useState(true);
   const [companyExpanded, setCompanyExpanded] = useState(true);
   const [signalsExpanded, setSignalsExpanded] = useState(true);
+  const [signalViewedProfile, setSignalViewedProfile] = useState(false);
+  const [signalPostedLinkedin, setSignalPostedLinkedin] = useState(false);
   const [companyTimeFilter, setCompanyTimeFilter] = useState('current');
   const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
 
@@ -174,12 +176,46 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
 
               {signalsExpanded && (
                 <div className="space-y-1">
-                  <FilterSection label="Viewed your profile recently" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Viewed your profile recently')}>
-                    <SearchFilterList items={['Last 7 days', 'Last 30 days', 'Last 90 days']} filterName="Viewed your profile recently" filterState={getFilter('Viewed your profile recently')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Select period..." />
-                  </FilterSection>
+                  {/* Viewed your profile - simple toggle */}
+                  <div className="flex items-center justify-between px-3 py-2.5">
+                    <span className="text-sm text-gray-700">Viewed your profile recently</span>
+                    <button
+                      onClick={() => setSignalViewedProfile(!signalViewedProfile)}
+                      className={`w-9 h-5 rounded-full transition-colors relative ${signalViewedProfile ? 'bg-[#1C64F2]' : 'bg-gray-300'}`}
+                    >
+                      <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform ${signalViewedProfile ? 'translate-x-4' : 'translate-x-0.5'}`} />
+                    </button>
+                  </div>
 
-                  <FilterSection label="Posted on LinkedIn" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Posted on LinkedIn')}>
-                    <SearchFilterList items={['Last 7 days', 'Last 30 days', 'Last 90 days']} filterName="Posted on LinkedIn" filterState={getFilter('Posted on LinkedIn')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Select period..." />
+                  {/* Posted on LinkedIn - simple toggle */}
+                  <div className="flex items-center justify-between px-3 py-2.5">
+                    <span className="text-sm text-gray-700">Posted on LinkedIn</span>
+                    <button
+                      onClick={() => setSignalPostedLinkedin(!signalPostedLinkedin)}
+                      className={`w-9 h-5 rounded-full transition-colors relative ${signalPostedLinkedin ? 'bg-[#1C64F2]' : 'bg-gray-300'}`}
+                    >
+                      <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform ${signalPostedLinkedin ? 'translate-x-4' : 'translate-x-0.5'}`} />
+                    </button>
+                  </div>
+
+                  {/* Changed Jobs - with 3 months / 1 year choice */}
+                  <FilterSection label="Changed jobs" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Changed jobs signal')}>
+                    <div className="px-3 py-2">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => toggleInclude('Changed jobs signal', '3 months')}
+                          className={`flex-1 text-xs font-medium py-2 rounded-md border transition-colors ${getFilter('Changed jobs signal').included.includes('3 months') ? 'bg-[#1C64F2] text-white border-[#1C64F2]' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}`}
+                        >
+                          3 months
+                        </button>
+                        <button
+                          onClick={() => toggleInclude('Changed jobs signal', '1 year')}
+                          className={`flex-1 text-xs font-medium py-2 rounded-md border transition-colors ${getFilter('Changed jobs signal').included.includes('1 year') ? 'bg-[#1C64F2] text-white border-[#1C64F2]' : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}`}
+                        >
+                          1 year
+                        </button>
+                      </div>
+                    </div>
                   </FilterSection>
                 </div>
               )}
