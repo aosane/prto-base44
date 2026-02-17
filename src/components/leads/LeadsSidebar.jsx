@@ -178,16 +178,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                     <SearchFilterList items={[]} filterName="Last name" filterState={getFilter('Last name')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search last name..." />
                   </FilterSection>
 
-                  {/* CRM - with SOON badge, not expandable */}
-                  <div>
-                    <button className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group cursor-default">
-                      <div className="flex items-center gap-2">
-                        <span>CRM</span>
-                        <span className="text-[10px] font-medium text-purple-600 bg-purple-100 px-2 py-0.5 rounded-full uppercase">Soon</span>
-                      </div>
-                      <Plus className="w-4 h-4 text-gray-300" />
-                    </button>
-                  </div>
+
                 </div>
               )}
             </div>
