@@ -137,12 +137,13 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                     <SearchFilterList items={mockUniversities} filterName="University" filterState={getFilter('University')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search universities..." />
                   </FilterSection>
 
-                  <FilterSection label="Changed jobs" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Changed jobs')}>
-                    <SearchFilterList items={changedJobsOptions} filterName="Changed jobs" filterState={getFilter('Changed jobs')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Select period..." />
+
+                  <FilterSection label="First name" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('First name')}>
+                    <SearchFilterList items={[]} filterName="First name" filterState={getFilter('First name')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search first name..." />
                   </FilterSection>
 
-                  <FilterSection label="Name" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Name')}>
-                    <SearchFilterList items={[]} filterName="Name" filterState={getFilter('Name')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search by name..." />
+                  <FilterSection label="Last name" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Last name')}>
+                    <SearchFilterList items={[]} filterName="Last name" filterState={getFilter('Last name')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search last name..." />
                   </FilterSection>
 
                   {/* CRM - with SOON badge, not expandable */}
