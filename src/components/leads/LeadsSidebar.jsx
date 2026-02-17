@@ -108,7 +108,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
           <>
             {/* SAVED LISTS filter */}
             <div className="mb-2">
-              <FilterSection label={<span className="flex items-center gap-1.5">Search in saved list <Users className="w-3.5 h-3.5 text-blue-500" /><Building2 className="w-3.5 h-3.5 text-purple-500" /></span>} expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedSavedLists.length} filterKey="Search in saved list">
+              <FilterSection label="Search in saved list" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedSavedLists.length}>
                 <SavedListFilter selectedLists={selectedSavedLists} setSelectedLists={setSelectedSavedLists} />
               </FilterSection>
             </div>
@@ -357,14 +357,13 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
   );
 }
 
-function FilterSection({ label, filterKey, expandedFilters, toggleFilter, filterState, count: externalCount, children }) {
-  const key = filterKey || label;
-  const isExpanded = expandedFilters.includes(key);
+function FilterSection({ label, expandedFilters, toggleFilter, filterState, count: externalCount, children }) {
+  const isExpanded = expandedFilters.includes(label);
   const count = externalCount ?? (filterState ? filterState.included.length + filterState.excluded.length : 0);
 
   return (
     <div>
-      <button onClick={() => toggleFilter(key)} className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group">
+      <button onClick={() => toggleFilter(label)} className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group">
         <div className="flex items-center gap-2">
           <span>{label}</span>
           {count > 0 && (
