@@ -333,14 +333,6 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                     <CompanySizeFilter selected={selectedCompanySizes} setSelected={setSelectedCompanySizes} />
                   </FilterSection>
 
-                  <FilterSection label="Industry" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Industry')}>
-                    <SearchFilterList items={mockIndustries} filterName="Industry" filterState={getFilter('Industry')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search industries..." />
-                  </FilterSection>
-
-                  <FilterSection label="Type" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Type')}>
-                    <SearchFilterList items={mockTypes} filterName="Type" filterState={getFilter('Type')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search types..." />
-                  </FilterSection>
-
                   <FilterSection label="Headquarters" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Headquarters')}>
                     <SearchFilterList items={mockHQ} filterName="Headquarters" filterState={getFilter('Headquarters')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search locations..." renderItem={renderWithSub} />
                   </FilterSection>
