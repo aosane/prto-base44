@@ -1,5 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Users, List, Upload, ChevronDown } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import LeadsTable from './LeadsTable';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const templates = [
   { name: 'Sales Leaders in SaaS', filters: 5 },
@@ -10,6 +20,9 @@ const templates = [
 ];
 
 export default function LeadsMainContent({ activeTab, filterCount = 0 }) {
+  const [showAddToListDialog, setShowAddToListDialog] = useState(false);
+  const [listName, setListName] = useState('');
+  const [enableAlerts, setEnableAlerts] = useState(false);
   if (activeTab === 'lists') {
     return (
       <main className="flex-1 overflow-y-auto bg-white p-8">
@@ -29,6 +42,85 @@ export default function LeadsMainContent({ activeTab, filterCount = 0 }) {
             </button>
           </div>
         </div>
+      </main>
+    );
+  }
+
+  // Show results when filters are active
+  if (filterCount > 0) {
+    return (
+      <main className="flex-1 overflow-y-auto bg-white">
+        <div className="h-full flex flex-col">
+          {/* Header with actions */}
+          <div className="border-b border-gray-200 px-6 py-4">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900">10 leads found</h2>
+                <p className="text-sm text-gray-500 mt-0.5">Based on your search criteria</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button onClick={() => setShowAddToListDialog(true)} className="bg-[#1C64F2] hover:bg-[#1854cc]">
+                  Add to list
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Table */}
+          <div className="flex-1 overflow-auto px-6 py-4">
+            <LeadsTable />
+          </div>
+        </div>
+
+        {/* Add to List Dialog */}
+        <Dialog open={showAddToListDialog} onOpenChange={setShowAddToListDialog}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>Save to list</DialogTitle>
+              <DialogDescription>
+                Save these leads to a list to organize and track them
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div>
+                <label className="text-sm font-medium text-gray-700 mb-2 block">List name</label>
+                <Input
+                  placeholder="Enter list name..."
+                  value={listName}
+                  onChange={(e) => setListName(e.target.value)}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-700">Enable alerts</p>
+                  <p className="text-xs text-gray-500">Get notified when leads match your criteria</p>
+                </div>
+                <button
+                  onClick={() => setEnableAlerts(!enableAlerts)}
+                  className={`w-11 h-6 rounded-full transition-colors relative ${enableAlerts ? 'bg-[#1C64F2]' : 'bg-gray-300'}`}
+                >
+                  <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${enableAlerts ? 'translate-x-5' : 'translate-x-0.5'}`} />
+                </button>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={() => setShowAddToListDialog(false)} className="flex-1">
+                Cancel
+              </Button>
+              <Button
+                onClick={() => {
+                  setShowAddToListDialog(false);
+                  setListName('');
+                  setEnableAlerts(false);
+                }}
+                disabled={!listName.trim()}
+                className="flex-1 bg-[#1C64F2] hover:bg-[#1854cc]"
+              >
+                Save
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </main>
     );
   }
