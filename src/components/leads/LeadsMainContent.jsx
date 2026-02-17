@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, List, Upload, ChevronDown } from 'lucide-react';
+import { Users, List, Upload, ChevronDown, Sparkles, Share2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import LeadsTable from './LeadsTable';
 import {
@@ -10,6 +10,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const templates = [
   { name: 'Sales Leaders in SaaS', filters: 5 },
@@ -59,6 +65,38 @@ export default function LeadsMainContent({ activeTab, filterCount = 0 }) {
                 <p className="text-sm text-gray-500 mt-0.5">Based on your search criteria</p>
               </div>
               <div className="flex items-center gap-2">
+                <Button variant="outline" className="gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  Enrich all
+                </Button>
+                
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="gap-2">
+                      <Share2 className="w-4 h-4" />
+                      Push to
+                      <ChevronDown className="w-4 h-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem>
+                      <span>Salesforce</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <span>HubSpot</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <span>Lemlist</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <span>Pipedrive</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <span>Zapier</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
                 <Button onClick={() => setShowAddToListDialog(true)} className="bg-[#1C64F2] hover:bg-[#1854cc]">
                   Add to list
                 </Button>
