@@ -17,8 +17,6 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
   const [engagedPostInput, setEngagedPostInput] = useState('');
 
   const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
-  const [selectedLeadLists, setSelectedLeadLists] = useState([]);
-  const [selectedCompanyLists, setSelectedCompanyLists] = useState([]);
 
   const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll } = useFilterState();
 
@@ -26,7 +24,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
     setExpandedFilters(prev => prev.includes(name) ? prev.filter(f => f !== name) : [...prev, name]);
   };
 
-  const activeCount = getActiveCount() + selectedCompanySizes.length + selectedLeadLists.length + selectedCompanyLists.length;
+  const activeCount = getActiveCount() + selectedCompanySizes.length;
 
   useEffect(() => {
     if (onFilterCountChange) onFilterCountChange(activeCount);
@@ -72,7 +70,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
             {activeCount > 0 && (
               <>
                 <button
-                  onClick={() => { resetAll(); setSelectedCompanySizes([]); setSelectedLeadLists([]); setSelectedCompanyLists([]); }}
+                  onClick={() => { resetAll(); setSelectedCompanySizes([]); }}
                   className="text-xs font-medium text-gray-500 hover:text-red-600 flex items-center gap-1 transition-colors"
                 >
                   <RotateCcw className="w-3 h-3" />
@@ -123,12 +121,12 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
 
               {savedListExpanded && (
                 <div className="space-y-1">
-                  <FilterSection label="Leads lists" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedLeadLists.length}>
-                    <SavedListFilter selectedLists={selectedLeadLists} setSelectedLists={setSelectedLeadLists} listType="lead" />
+                  <FilterSection label="Leads lists" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Leads lists')}>
+                    <SavedListFilter filterName="Leads lists" filterState={getFilter('Leads lists')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} listType="lead" />
                   </FilterSection>
 
-                  <FilterSection label="Companies lists" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedCompanyLists.length}>
-                    <SavedListFilter selectedLists={selectedCompanyLists} setSelectedLists={setSelectedCompanyLists} listType="company" />
+                  <FilterSection label="Companies lists" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Companies lists')}>
+                    <SavedListFilter filterName="Companies lists" filterState={getFilter('Companies lists')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} listType="company" />
                   </FilterSection>
                 </div>
               )}
