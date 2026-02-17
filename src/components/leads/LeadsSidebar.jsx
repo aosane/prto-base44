@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, List, Plus, Minus, ChevronUp, ChevronDown, User, Building2, RotateCcw } from 'lucide-react';
+import { Search, List, Plus, Minus, ChevronUp, ChevronDown, User, Building2, RotateCcw, Zap } from 'lucide-react';
 import SearchFilterList from '../search/SearchFilterList';
 import CompanySizeFilter from '../search/CompanySizeFilter';
 import useFilterState from '../search/useFilterState';
@@ -8,6 +8,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
   const [expandedFilters, setExpandedFilters] = useState([]);
   const [peopleExpanded, setPeopleExpanded] = useState(true);
   const [companyExpanded, setCompanyExpanded] = useState(true);
+  const [signalsExpanded, setSignalsExpanded] = useState(true);
   const [companyTimeFilter, setCompanyTimeFilter] = useState('current');
   const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
 
@@ -142,10 +143,6 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                     <SearchFilterList items={[]} filterName="Name" filterState={getFilter('Name')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search by name..." />
                   </FilterSection>
 
-                  <FilterSection label="Skills" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Skills')}>
-                    <SearchFilterList items={mockSkills} filterName="Skills" filterState={getFilter('Skills')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search skills..." />
-                  </FilterSection>
-
                   {/* CRM - with SOON badge, not expandable */}
                   <div>
                     <button className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group cursor-default">
@@ -156,6 +153,34 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                       <Plus className="w-4 h-4 text-gray-300" />
                     </button>
                   </div>
+                </div>
+              )}
+            </div>
+
+            <div className="border-b border-gray-200 my-2"></div>
+
+            {/* SIGNALS section */}
+            <div className="mb-2">
+              <button
+                onClick={() => setSignalsExpanded(!signalsExpanded)}
+                className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-gray-400 uppercase mb-2 hover:text-gray-600"
+              >
+                <div className="flex items-center gap-2">
+                  <Zap className="w-4 h-4" />
+                  <span>SIGNALS</span>
+                </div>
+                {signalsExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+
+              {signalsExpanded && (
+                <div className="space-y-1">
+                  <FilterSection label="Viewed your profile recently" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Viewed your profile recently')}>
+                    <SearchFilterList items={['Last 7 days', 'Last 30 days', 'Last 90 days']} filterName="Viewed your profile recently" filterState={getFilter('Viewed your profile recently')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Select period..." />
+                  </FilterSection>
+
+                  <FilterSection label="Posted on LinkedIn" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Posted on LinkedIn')}>
+                    <SearchFilterList items={['Last 7 days', 'Last 30 days', 'Last 90 days']} filterName="Posted on LinkedIn" filterState={getFilter('Posted on LinkedIn')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Select period..." />
+                  </FilterSection>
                 </div>
               )}
             </div>
