@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, List, Upload, ChevronDown, Sparkles, Share2, Plus } from 'lucide-react';
+import { Users, List, Upload, ChevronDown, Sparkles, Share2, FolderPlus } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import LeadsTable from './LeadsTable';
 import {
@@ -92,8 +92,8 @@ export default function LeadsMainContent({ activeTab, filterCount = 0 }) {
                   </DropdownMenuContent>
                 </DropdownMenu>
 
-                <Button variant="outline" onClick={() => setShowAddToListDialog(true)} className="gap-2">
-                  <Plus className="w-4 h-4" />
+                <Button variant="outline" onClick={() => setShowAddToListDialog(true)} className="gap-2 bg-white">
+                  <FolderPlus className="w-4 h-4" />
                   Add to list
                 </Button>
 
