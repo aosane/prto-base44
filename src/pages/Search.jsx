@@ -1,12 +1,14 @@
-import React from 'react';
-import Sidebar from '../components/search/Sidebar';
-import MainContent from '../components/search/MainContent';
+import React, { useState } from 'react';
+import LeadsSidebar from '../components/leads/LeadsSidebar';
+import LeadsMainContent from '../components/leads/LeadsMainContent';
 
 export default function Search() {
+  const [filterCount, setFilterCount] = useState(0);
+
   return (
     <div className="h-full flex overflow-hidden bg-gray-50">
-      <Sidebar />
-      <MainContent />
+      <LeadsSidebar onFilterCountChange={setFilterCount} />
+      <LeadsMainContent filterCount={filterCount} />
     </div>
   );
 }
