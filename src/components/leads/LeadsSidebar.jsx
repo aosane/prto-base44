@@ -13,7 +13,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
   const [signalPostedLinkedin, setSignalPostedLinkedin] = useState(false);
   const [followCompetitorInput, setFollowCompetitorInput] = useState('');
   const [engagedPostInput, setEngagedPostInput] = useState('');
-  const [companyTimeFilter, setCompanyTimeFilter] = useState('current');
+
   const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
 
   const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll } = useFilterState();
@@ -308,25 +308,14 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
 
               {companyExpanded && (
                 <div className="space-y-1">
-                  {/* Company with current/past toggle */}
-                  <FilterSection label="Company" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Company')}>
-                    <div className="px-3 mb-2">
-                      <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-0.5">
-                        <button
-                          onClick={() => setCompanyTimeFilter('current')}
-                          className={`flex-1 text-xs font-medium py-1.5 rounded-md transition-colors ${companyTimeFilter === 'current' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                        >
-                          Current
-                        </button>
-                        <button
-                          onClick={() => setCompanyTimeFilter('past')}
-                          className={`flex-1 text-xs font-medium py-1.5 rounded-md transition-colors ${companyTimeFilter === 'past' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                        >
-                          Past
-                        </button>
-                      </div>
-                    </div>
-                    <SearchFilterList items={mockCompanies} filterName="Company" filterState={getFilter('Company')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search companies..." renderItem={renderWithSub} />
+                  {/* Current Company */}
+                  <FilterSection label="Current company" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Current company')}>
+                    <SearchFilterList items={mockCompanies} filterName="Current company" filterState={getFilter('Current company')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search current companies..." renderItem={renderWithSub} />
+                  </FilterSection>
+
+                  {/* Past Company */}
+                  <FilterSection label="Past company" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Past company')}>
+                    <SearchFilterList items={mockCompanies} filterName="Past company" filterState={getFilter('Past company')} toggleInclude={toggleInclude} toggleExclude={toggleExclude} removeInclude={removeInclude} removeExclude={removeExclude} placeholder="Search past companies..." renderItem={renderWithSub} />
                   </FilterSection>
 
                   <FilterSection label="Headcount" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedCompanySizes.length}>
