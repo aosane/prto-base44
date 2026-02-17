@@ -11,6 +11,8 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
   const [signalsExpanded, setSignalsExpanded] = useState(true);
   const [signalViewedProfile, setSignalViewedProfile] = useState(false);
   const [signalPostedLinkedin, setSignalPostedLinkedin] = useState(false);
+  const [followCompetitorInput, setFollowCompetitorInput] = useState('');
+  const [engagedPostInput, setEngagedPostInput] = useState('');
   const [companyTimeFilter, setCompanyTimeFilter] = useState('current');
   const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
 
@@ -216,6 +218,73 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                           1 year
                         </button>
                       </div>
+                    </div>
+                  </FilterSection>
+
+                  {/* Follow competitor */}
+                  <FilterSection label="Follow competitor" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Follow competitor')}>
+                    <div className="px-3 py-2">
+                      <input
+                        type="text"
+                        placeholder="Name or LinkedIn URL..."
+                        value={followCompetitorInput}
+                        onChange={(e) => setFollowCompetitorInput(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && followCompetitorInput.trim()) {
+                            toggleInclude('Follow competitor', followCompetitorInput.trim());
+                            setFollowCompetitorInput('');
+                          }
+                        }}
+                        className="w-full text-sm border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1C64F2] focus:border-[#1C64F2]"
+                      />
+                      {followCompetitorInput.trim() && (
+                        <div className="mt-1 border border-gray-200 rounded-md bg-white shadow-sm max-h-32 overflow-y-auto">
+                          {['John Doe', 'Jane Smith', 'Marc Dupont'].filter(n => n.toLowerCase().includes(followCompetitorInput.toLowerCase())).map(name => (
+                            <button key={name} onClick={() => { toggleInclude('Follow competitor', name); setFollowCompetitorInput(''); }} className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                              {name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                      {getFilter('Follow competitor').included.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-2">
+                          {getFilter('Follow competitor').included.map(item => (
+                            <span key={item} className="inline-flex items-center gap-1 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                              {item}
+                              <button onClick={() => removeInclude('Follow competitor', item)} className="hover:text-blue-600">×</button>
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </FilterSection>
+
+                  {/* Engaged with a post */}
+                  <FilterSection label="Engaged with a post" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Engaged with a post')}>
+                    <div className="px-3 py-2">
+                      <input
+                        type="text"
+                        placeholder="Paste LinkedIn post URL..."
+                        value={engagedPostInput}
+                        onChange={(e) => setEngagedPostInput(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && engagedPostInput.trim()) {
+                            toggleInclude('Engaged with a post', engagedPostInput.trim());
+                            setEngagedPostInput('');
+                          }
+                        }}
+                        className="w-full text-sm border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1C64F2] focus:border-[#1C64F2]"
+                      />
+                      {getFilter('Engaged with a post').included.length > 0 && (
+                        <div className="flex flex-col gap-1 mt-2">
+                          {getFilter('Engaged with a post').included.map(url => (
+                            <span key={url} className="inline-flex items-center gap-1 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full truncate max-w-full">
+                              <span className="truncate">{url}</span>
+                              <button onClick={() => removeInclude('Engaged with a post', url)} className="hover:text-blue-600 flex-shrink-0">×</button>
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </FilterSection>
                 </div>
