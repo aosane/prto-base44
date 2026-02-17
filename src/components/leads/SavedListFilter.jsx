@@ -29,6 +29,13 @@ export default function SavedListFilter({ selectedLists, setSelectedLists }) {
 
   return (
     <div className="px-3 py-2">
+      <div className="flex items-center gap-2 mb-2 text-xs text-gray-500">
+        <Users className="w-3.5 h-3.5" />
+        <span>Leads</span>
+        <span>•</span>
+        <Building2 className="w-3.5 h-3.5" />
+        <span>Companies</span>
+      </div>
       <input
         type="text"
         placeholder="Search saved lists..."
