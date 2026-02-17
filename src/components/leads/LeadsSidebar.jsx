@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, List, Plus, Minus, ChevronUp, ChevronDown, User, Building2, RotateCcw, Zap } from 'lucide-react';
 import SearchFilterList from '../search/SearchFilterList';
 import CompanySizeFilter from '../search/CompanySizeFilter';
+import SavedListFilter from './SavedListFilter';
 import useFilterState from '../search/useFilterState';
 
 export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountChange }) {
@@ -15,6 +16,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
   const [engagedPostInput, setEngagedPostInput] = useState('');
 
   const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
+  const [selectedSavedLists, setSelectedSavedLists] = useState([]);
 
   const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll } = useFilterState();
 
@@ -22,7 +24,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
     setExpandedFilters(prev => prev.includes(name) ? prev.filter(f => f !== name) : [...prev, name]);
   };
 
-  const activeCount = getActiveCount() + selectedCompanySizes.length;
+  const activeCount = getActiveCount() + selectedCompanySizes.length + selectedSavedLists.length;
 
   useEffect(() => {
     if (onFilterCountChange) onFilterCountChange(activeCount);
@@ -68,7 +70,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
             {activeCount > 0 && (
               <>
                 <button
-                  onClick={() => { resetAll(); setSelectedCompanySizes([]); }}
+                  onClick={() => { resetAll(); setSelectedCompanySizes([]); setSelectedSavedLists([]); }}
                   className="text-xs font-medium text-gray-500 hover:text-red-600 flex items-center gap-1 transition-colors"
                 >
                   <RotateCcw className="w-3 h-3" />
@@ -104,6 +106,15 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
 
         {activeTab === 'search' && (
           <>
+            {/* SAVED LISTS filter */}
+            <div className="mb-2">
+              <FilterSection label="From saved list" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedSavedLists.length}>
+                <SavedListFilter selectedLists={selectedSavedLists} setSelectedLists={setSelectedSavedLists} />
+              </FilterSection>
+            </div>
+
+            <div className="border-b border-gray-200 my-2"></div>
+
             {/* PEOPLE section */}
             <div className="mb-2">
               <button
