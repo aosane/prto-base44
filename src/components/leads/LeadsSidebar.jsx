@@ -108,7 +108,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
           <>
             {/* SAVED LISTS filter */}
             <div className="mb-2">
-              <FilterSection label="Search in saved list" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedSavedLists.length}>
+              <FilterSection label="From saved list" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedSavedLists.length}>
                 <SavedListFilter selectedLists={selectedSavedLists} setSelectedLists={setSelectedSavedLists} />
               </FilterSection>
             </div>
