@@ -10,13 +10,15 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
   const [peopleExpanded, setPeopleExpanded] = useState(true);
   const [companyExpanded, setCompanyExpanded] = useState(true);
   const [signalsExpanded, setSignalsExpanded] = useState(true);
+  const [savedListExpanded, setSavedListExpanded] = useState(true);
   const [signalViewedProfile, setSignalViewedProfile] = useState(false);
   const [signalPostedLinkedin, setSignalPostedLinkedin] = useState(false);
   const [followCompetitorInput, setFollowCompetitorInput] = useState('');
   const [engagedPostInput, setEngagedPostInput] = useState('');
 
   const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
-  const [selectedSavedLists, setSelectedSavedLists] = useState([]);
+  const [selectedLeadLists, setSelectedLeadLists] = useState([]);
+  const [selectedCompanyLists, setSelectedCompanyLists] = useState([]);
 
   const { toggleInclude, toggleExclude, removeInclude, removeExclude, getFilter, getActiveCount, resetAll } = useFilterState();
 
@@ -24,7 +26,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
     setExpandedFilters(prev => prev.includes(name) ? prev.filter(f => f !== name) : [...prev, name]);
   };
 
-  const activeCount = getActiveCount() + selectedCompanySizes.length + selectedSavedLists.length;
+  const activeCount = getActiveCount() + selectedCompanySizes.length + selectedLeadLists.length + selectedCompanyLists.length;
 
   useEffect(() => {
     if (onFilterCountChange) onFilterCountChange(activeCount);
@@ -70,7 +72,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
             {activeCount > 0 && (
               <>
                 <button
-                  onClick={() => { resetAll(); setSelectedCompanySizes([]); setSelectedSavedLists([]); }}
+                  onClick={() => { resetAll(); setSelectedCompanySizes([]); setSelectedLeadLists([]); setSelectedCompanyLists([]); }}
                   className="text-xs font-medium text-gray-500 hover:text-red-600 flex items-center gap-1 transition-colors"
                 >
                   <RotateCcw className="w-3 h-3" />
@@ -106,11 +108,30 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
 
         {activeTab === 'search' && (
           <>
-            {/* SAVED LISTS filter */}
+            {/* FROM SAVED LIST section */}
             <div className="mb-2">
-              <FilterSection label="From saved list" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedSavedLists.length}>
-                <SavedListFilter selectedLists={selectedSavedLists} setSelectedLists={setSelectedSavedLists} />
-              </FilterSection>
+              <button
+                onClick={() => setSavedListExpanded(!savedListExpanded)}
+                className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-gray-400 uppercase mb-2 hover:text-gray-600"
+              >
+                <div className="flex items-center gap-2">
+                  <List className="w-4 h-4" />
+                  <span>FROM SAVED LIST</span>
+                </div>
+                {savedListExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+
+              {savedListExpanded && (
+                <div className="space-y-1">
+                  <FilterSection label="Leads lists" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedLeadLists.length}>
+                    <SavedListFilter selectedLists={selectedLeadLists} setSelectedLists={setSelectedLeadLists} listType="lead" />
+                  </FilterSection>
+
+                  <FilterSection label="Companies lists" expandedFilters={expandedFilters} toggleFilter={toggleFilter} count={selectedCompanyLists.length}>
+                    <SavedListFilter selectedLists={selectedCompanyLists} setSelectedLists={setSelectedCompanyLists} listType="company" />
+                  </FilterSection>
+                </div>
+              )}
             </div>
 
             <div className="border-b border-gray-200 my-2"></div>

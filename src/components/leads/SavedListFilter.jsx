@@ -10,10 +10,11 @@ const mockSavedLists = [
   { id: 6, name: 'Fintech Startups', type: 'company', count: 67 },
 ];
 
-export default function SavedListFilter({ selectedLists, setSelectedLists }) {
+export default function SavedListFilter({ selectedLists, setSelectedLists, listType }) {
   const [search, setSearch] = useState('');
 
   const filtered = mockSavedLists.filter(l =>
+    l.type === listType &&
     l.name.toLowerCase().includes(search.toLowerCase()) &&
     !selectedLists.find(s => s.id === l.id)
   );
@@ -29,13 +30,6 @@ export default function SavedListFilter({ selectedLists, setSelectedLists }) {
 
   return (
     <div className="px-3 py-2">
-      <div className="flex items-center gap-2 mb-2 text-xs text-gray-500">
-        <Users className="w-3.5 h-3.5" />
-        <span>Leads</span>
-        <span>•</span>
-        <Building2 className="w-3.5 h-3.5" />
-        <span>Companies</span>
-      </div>
       <input
         type="text"
         placeholder="Search saved lists..."
