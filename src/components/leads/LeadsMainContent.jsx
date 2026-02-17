@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, List, Upload, ChevronDown, Sparkles, Share2 } from 'lucide-react';
+import { Users, List, Upload, ChevronDown, Sparkles, Share2, Plus } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import LeadsTable from './LeadsTable';
 import {
@@ -65,11 +65,6 @@ export default function LeadsMainContent({ activeTab, filterCount = 0 }) {
                 <p className="text-sm text-gray-500 mt-0.5">Based on your search criteria</p>
               </div>
               <div className="flex items-center gap-2">
-                <Button variant="outline" className="gap-2">
-                  <Sparkles className="w-4 h-4" />
-                  Enrich all
-                </Button>
-                
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="gap-2">
@@ -97,8 +92,14 @@ export default function LeadsMainContent({ activeTab, filterCount = 0 }) {
                   </DropdownMenuContent>
                 </DropdownMenu>
 
-                <Button onClick={() => setShowAddToListDialog(true)} className="bg-[#1C64F2] hover:bg-[#1854cc]">
+                <Button variant="outline" onClick={() => setShowAddToListDialog(true)} className="gap-2">
+                  <Plus className="w-4 h-4" />
                   Add to list
+                </Button>
+
+                <Button className="bg-[#1C64F2] hover:bg-[#1854cc] gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  Enrich all
                 </Button>
               </div>
             </div>
