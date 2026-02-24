@@ -155,9 +155,19 @@ export default function Sidebar({ activeTab, setActiveTab, onFilterCountChange, 
 
   const activeCount = getActiveCount() + deepsearchCount;
 
+  const isUpgradeFilterActive =
+    getFilter('Tech Stack').included.length > 0 ||
+    getFilter('Tech Stack').excluded.length > 0 ||
+    getFilter('Lookalike').included.length > 0 ||
+    expandedFilters.includes('Hiring a job');
+
   useEffect(() => {
     if (onFilterCountChange) onFilterCountChange(activeCount);
   }, [activeCount, onFilterCountChange]);
+
+  useEffect(() => {
+    if (onUpgradeFilterChange) onUpgradeFilterChange(isUpgradeFilterActive);
+  }, [isUpgradeFilterActive, onUpgradeFilterChange]);
 
   return (
     <aside className="w-72 bg-white border-r border-gray-200 relative z-10 flex-shrink-0 h-full flex flex-col">
