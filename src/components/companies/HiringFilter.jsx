@@ -14,7 +14,10 @@ export default function HiringFilter({ expandedFilters, toggleFilter }) {
         onClick={() => toggleFilter('Hiring a job')}
         className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-md group"
       >
-        <span>Hiring a job</span>
+        <div className="flex items-center gap-2">
+          <span>Hiring a job</span>
+          <span className="text-[10px] font-semibold text-orange-600 bg-orange-100 px-1.5 py-0.5 rounded-full">1 crédit</span>
+        </div>
         {expandedFilters.includes('Hiring a job') ? 
           <Minus className="w-4 h-4 text-gray-400" /> : 
           <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
