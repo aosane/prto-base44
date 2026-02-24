@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, ChevronDown, Download, FileText, Link as LinkIcon, List, Bell, FolderPlus, Users, Sparkles } from 'lucide-react';
+import { Upload, ChevronDown, Download, FileText, Link as LinkIcon, List, Bell, FolderPlus, Users, Sparkles, Share2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
