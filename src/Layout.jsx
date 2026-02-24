@@ -113,7 +113,7 @@ export default function Layout({ children, currentPageName }) {
                   <span className="ml-auto font-medium text-gray-900">0 / 999999</span>
                 </div>
               </div>
-              <button className="w-full mt-3 px-3 py-2 bg-amber-600 text-white text-sm font-medium rounded-lg hover:bg-amber-700 transition-all flex items-center justify-center gap-2">
+              <button className="w-full mt-3 px-2.5 py-1.5 text-sm font-medium rounded flex items-center justify-center gap-2 transition-all" style={{backgroundColor:'#E3A008', border:'1px solid rgb(142,75,16)', color:'#8E4B10', borderRadius:'6px'}}>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" /></svg>
                 Subscribe to a plan
               </button>
