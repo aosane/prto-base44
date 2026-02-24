@@ -12,7 +12,7 @@ import AlertBanner from './AlertBanner';
 
 import AddToListDialog from './AddToListDialog';
 
-export default function MainContent({ activeTab, setActiveTab, filterCount = 0 }) {
+export default function MainContent({ activeTab, setActiveTab, filterCount = 0, upgradeFilterActive = false }) {
   const [showAddToList, setShowAddToList] = useState(false);
   const templates = [
     { name: 'SaaS Companies (Series A-B)', filters: 5 },
