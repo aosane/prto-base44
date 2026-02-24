@@ -14,7 +14,7 @@ const mockCompanies = [
   { id: 10, name: 'TechAbrasion SARL', logo: '⚙️', location: '—', headcount: '1-10 employees', industry: 'Abrasives and Nonmetalli...', type: '—' },
 ];
 
-export default function CompanyTable() {
+export default function CompanyTable({ upgradeFilterActive = false }) {
   const [selectedIds, setSelectedIds] = useState([]);
   const allSelected = selectedIds.length === mockCompanies.length;
 
