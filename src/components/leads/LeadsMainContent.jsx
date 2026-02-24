@@ -25,7 +25,8 @@ const templates = [
   { name: 'VPs in Financial Services', filters: 4 },
 ];
 
-export default function LeadsMainContent({ activeTab, filterCount = 0 }) {
+export default function LeadsMainContent({ activeTab, filterCount = 0, signalFilterActive = false }) {
+  const [unlocked, setUnlocked] = useState(false);
   const [showAddToListDialog, setShowAddToListDialog] = useState(false);
   const [listName, setListName] = useState('');
   const [enableAlerts, setEnableAlerts] = useState(false);
