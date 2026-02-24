@@ -393,7 +393,7 @@ export default function Sidebar({ activeTab, setActiveTab, onFilterCountChange }
   );
 }
 
-function FilterSection({ label, expandedFilters, toggleFilter, filterState, count: externalCount, isHighlighted, children }) {
+function FilterSection({ label, expandedFilters, toggleFilter, filterState, count: externalCount, isHighlighted, creditBadge, children }) {
   const isExpanded = expandedFilters.includes(label);
   const count = externalCount ?? (filterState ? filterState.included.length + filterState.excluded.length : 0);
 
@@ -404,6 +404,9 @@ function FilterSection({ label, expandedFilters, toggleFilter, filterState, coun
           <span>{label}</span>
           {count > 0 && (
             <span className="w-5 h-5 rounded-full bg-[#1C64F2] text-white text-xs flex items-center justify-center">{count}</span>
+          )}
+          {creditBadge && (
+            <span className="text-[10px] font-semibold text-orange-600 bg-orange-100 px-1.5 py-0.5 rounded-full">1 crédit</span>
           )}
         </div>
         {isExpanded ? <Minus className="w-4 h-4 text-gray-400" /> : <Plus className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />}
