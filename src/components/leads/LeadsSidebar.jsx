@@ -26,9 +26,18 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
 
   const activeCount = getActiveCount() + selectedCompanySizes.length;
 
+  const isSignalActive = signalViewedProfile || signalPostedLinkedin ||
+    getFilter('Changed jobs signal').included.length > 0 ||
+    getFilter('Follow competitor').included.length > 0 ||
+    getFilter('Engaged with a post').included.length > 0;
+
   useEffect(() => {
     if (onFilterCountChange) onFilterCountChange(activeCount);
   }, [activeCount, onFilterCountChange]);
+
+  useEffect(() => {
+    if (onSignalFilterChange) onSignalFilterChange(isSignalActive);
+  }, [isSignalActive, onSignalFilterChange]);
 
   // Mock data
   const mockJobTitles = ['CEO', 'CTO', 'VP Sales', 'Head of Marketing', 'Product Manager', 'Software Engineer', 'Data Scientist', 'Sales Director', 'CMO', 'COO'];
