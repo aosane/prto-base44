@@ -321,10 +321,12 @@ export default function Sidebar({ activeTab, setActiveTab, onFilterCountChange }
                   </FilterSection>
 
                   {/* Hiring */}
-                  <HiringFilter expandedFilters={expandedFilters} toggleFilter={toggleFilter} />
+                  <FilterSection label="Hiring" expandedFilters={expandedFilters} toggleFilter={toggleFilter} creditBadge>
+                    <HiringFilter expandedFilters={expandedFilters} toggleFilter={toggleFilter} />
+                  </FilterSection>
 
                   {/* Tech Stack */}
-                  <FilterSection label="Tech Stack" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Tech Stack')}>
+                  <FilterSection label="Tech Stack" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Tech Stack')} creditBadge>
                     <SearchFilterList
                       items={mockTechStack}
                       filterName="Tech Stack"
