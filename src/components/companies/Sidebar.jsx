@@ -11,7 +11,7 @@ import CompanySizeFilter from '../search/CompanySizeFilter';
 import LookalikeFilter from './LookalikeFilter';
 import useFilterState from '../search/useFilterState';
 
-export default function Sidebar({ activeTab, setActiveTab, onFilterCountChange }) {
+export default function Sidebar({ activeTab, setActiveTab, onFilterCountChange, onUpgradeFilterChange }) {
   const [expandedFilters, setExpandedFilters] = useState([]);
   const [expandedSection, setExpandedSection] = useState(null);
 
