@@ -254,7 +254,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                   </FilterSection>
 
                   {/* Follow competitor */}
-                  <FilterSection label="Follow competitor" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Follow competitor')}>
+                  <FilterSection label="Follow competitor" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Follow competitor')} creditBadge>
                     <div className="px-3 py-2">
                       <input
                         type="text"
