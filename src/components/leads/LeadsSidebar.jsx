@@ -204,7 +204,6 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                 <div className="flex items-center gap-2">
                   <Zap className="w-4 h-4" />
                   <span>SIGNALS</span>
-                  <span className="text-[10px] font-semibold text-orange-600 bg-orange-100 px-1.5 py-0.5 rounded-full normal-case">1 crédit / lead</span>
                 </div>
                 {signalsExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </button>
