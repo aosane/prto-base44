@@ -10,6 +10,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
   const [peopleExpanded, setPeopleExpanded] = useState(true);
   const [companyExpanded, setCompanyExpanded] = useState(true);
   const [signalsExpanded, setSignalsExpanded] = useState(true);
+
   const [savedListExpanded, setSavedListExpanded] = useState(true);
   const [signalViewedProfile, setSignalViewedProfile] = useState(false);
   const [signalPostedLinkedin, setSignalPostedLinkedin] = useState(false);
