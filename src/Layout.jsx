@@ -132,7 +132,7 @@ export default function Layout({ children, currentPageName }) {
                 <span className="text-gray-700">Credits</span>
                 <span className="ml-auto font-medium text-gray-900">878</span>
               </div>
-              <button className="w-full px-3 py-2 bg-amber-600 text-white text-sm font-medium rounded-lg hover:bg-amber-700 transition-all flex items-center justify-center gap-2">
+              <button className="w-full px-2.5 py-1.5 text-sm font-medium rounded flex items-center justify-center gap-2 transition-all" style={{backgroundColor:'#E3A008', border:'1px solid rgb(142,75,16)', color:'#8E4B10', borderRadius:'6px'}}>
                 <span>+</span>
                 <span>Add credits</span>
               </button>
