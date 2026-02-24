@@ -13,7 +13,7 @@ import useFilterState from '../search/useFilterState';
 
 export default function Sidebar({ activeTab, setActiveTab, onFilterCountChange, onUpgradeFilterChange }) {
   const [expandedFilters, setExpandedFilters] = useState([]);
-  const [expandedSection, setExpandedSection] = useState(null);
+  const [expandedSection, setExpandedSection] = useState('signals');
 
   // Range filter states
   const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
