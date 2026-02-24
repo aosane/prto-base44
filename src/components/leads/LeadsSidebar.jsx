@@ -5,7 +5,7 @@ import CompanySizeFilter from '../search/CompanySizeFilter';
 import SavedListFilter from './SavedListFilter';
 import useFilterState from '../search/useFilterState';
 
-export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountChange }) {
+export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountChange, onSignalFilterChange }) {
   const [expandedFilters, setExpandedFilters] = useState([]);
   const [peopleExpanded, setPeopleExpanded] = useState(true);
   const [companyExpanded, setCompanyExpanded] = useState(true);
