@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, List, Upload, ChevronDown, Sparkles, Share2, FolderPlus } from 'lucide-react';
+import { Users, List, Upload, ChevronDown, Sparkles, Share2, FolderPlus, Lock } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import LeadsTable from './LeadsTable';
 import {
