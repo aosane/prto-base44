@@ -292,7 +292,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                   </FilterSection>
 
                   {/* Engaged with a post */}
-                  <FilterSection label="Engaged with a post" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Engaged with a post')}>
+                  <FilterSection label="Engaged with a post" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Engaged with a post')} creditBadge>
                     <div className="px-3 py-2">
                       <input
                         type="text"
