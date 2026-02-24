@@ -16,7 +16,7 @@ export default function HiringFilter({ expandedFilters, toggleFilter }) {
       >
         <div className="flex items-center gap-2">
           <span>Hiring a job</span>
-          <span className="text-[10px] font-semibold text-purple-700 bg-purple-100 px-1.5 py-0.5 rounded-full">Upgrade</span>
+          <span className="text-[10px] font-semibold text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded-full">Upgrade</span>
         </div>
         {expandedFilters.includes('Hiring a job') ? 
           <Minus className="w-4 h-4 text-gray-400" /> : 
