@@ -348,7 +348,7 @@ export default function Sidebar({ activeTab, setActiveTab, onFilterCountChange, 
                   </FilterSection>
 
                   {/* Lookalike */}
-                  <FilterSection label="Lookalike" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Lookalike')}>
+                  <FilterSection label="Lookalike" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Lookalike')} creditBadge>
                     <LookalikeFilter
                       items={mockLookalikes}
                       filterName="Lookalike"
