@@ -49,34 +49,49 @@ export default function MainContent({ activeTab, setActiveTab, filterCount = 0, 
   if (filterCount > 0) {
     return (
       <main className="flex-1 overflow-y-auto bg-white relative z-0">
-        <div className="px-6 py-4">
-          {/* Header with count and action buttons */}
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">10 companies</h2>
-            <div className="flex items-center gap-2">
-              <Button variant="outline" className="gap-2 text-sm" onClick={() => setShowAddToList(true)}>
-                <FolderPlus className="w-4 h-4" />
-                Add to list
-              </Button>
-              <Button className="gap-2 text-sm bg-[#1C64F2] hover:bg-[#1854cc]">
-                <Sparkles className="w-4 h-4" />
-                Search employees
-              </Button>
+        <div className="h-full flex flex-col">
+          {/* Header */}
+          <div className="border-b border-gray-200 px-6 py-4">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900">10 companies found</h2>
+                <p className="text-sm text-gray-500 mt-0.5">Based on your search criteria</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="gap-2">
+                      <Share2 className="w-4 h-4" />
+                      Push to
+                      <ChevronDown className="w-4 h-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem>Salesforce</DropdownMenuItem>
+                    <DropdownMenuItem>HubSpot</DropdownMenuItem>
+                    <DropdownMenuItem>Lemlist</DropdownMenuItem>
+                    <DropdownMenuItem>Pipedrive</DropdownMenuItem>
+                    <DropdownMenuItem>Zapier</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <Button variant="outline" className="gap-2 bg-white" onClick={() => setShowAddToList(true)}>
+                  <FolderPlus className="w-4 h-4" />
+                  Add to list
+                </Button>
+                <Button className="gap-2 text-sm bg-[#1C64F2] hover:bg-[#1854cc]">
+                  <Users className="w-4 h-4" />
+                  Search employees
+                </Button>
+              </div>
             </div>
           </div>
 
-          {/* Option A: Alert banner under header */}
-          <div className="mb-4">
-            <AlertBanner />
+          {/* Table */}
+          <div className="flex-1 overflow-auto px-6 py-4">
+            <CompanyTable upgradeFilterActive={upgradeFilterActive} />
           </div>
-
-          {/* Company table */}
-          <CompanyTable />
-
-
         </div>
 
-        {/* Option C: Add to list dialog with alert toggle */}
         <AddToListDialog open={showAddToList} onOpenChange={setShowAddToList} />
       </main>
     );
