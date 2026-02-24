@@ -321,9 +321,7 @@ export default function Sidebar({ activeTab, setActiveTab, onFilterCountChange }
                   </FilterSection>
 
                   {/* Hiring */}
-                  <FilterSection label="Hiring" expandedFilters={expandedFilters} toggleFilter={toggleFilter} creditBadge>
-                    <HiringFilter expandedFilters={expandedFilters} toggleFilter={toggleFilter} />
-                  </FilterSection>
+                  <HiringFilter expandedFilters={expandedFilters} toggleFilter={toggleFilter} />
 
                   {/* Tech Stack */}
                   <FilterSection label="Tech Stack" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Tech Stack')} creditBadge>
