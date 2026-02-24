@@ -234,7 +234,7 @@ export default function LeadsSidebar({ activeTab, setActiveTab, onFilterCountCha
                   </div>
 
                   {/* Changed Jobs - with 3 months / 1 year choice */}
-                  <FilterSection label="Changed jobs" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Changed jobs signal')}>
+                  <FilterSection label="Changed jobs" expandedFilters={expandedFilters} toggleFilter={toggleFilter} filterState={getFilter('Changed jobs signal')} creditBadge>
                     <div className="px-3 py-2">
                       <div className="flex items-center gap-2">
                         <button
