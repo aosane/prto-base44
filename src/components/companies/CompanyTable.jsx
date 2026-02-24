@@ -52,10 +52,10 @@ export default function CompanyTable({ upgradeFilterActive = false }) {
               </td>
               <td className="py-3 px-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center text-sm">
+                  <div className={`w-8 h-8 bg-gray-100 rounded flex items-center justify-center text-sm ${upgradeFilterActive ? 'blur-sm' : ''}`}>
                     {company.logo}
                   </div>
-                  <span className="text-sm font-medium text-gray-900 truncate max-w-[180px]">{company.name}</span>
+                  <span className={`text-sm font-medium text-gray-900 truncate max-w-[180px] ${upgradeFilterActive ? 'blur-sm select-none' : ''}`}>{company.name}</span>
                 </div>
               </td>
               <td className="py-3 px-4 text-sm text-gray-500">{company.location}</td>
